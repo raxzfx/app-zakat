@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jenis_pengeluaran', function (Blueprint $table) {
             $table->integer('kode_jenis')-> primary();
-            $table->varchar('jenis_pengeluaran');
+            $table->string('jenis_pengeluaran');
             $table->text('deskripsi');
             $table->timestamps();
         });

@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jenis_penyaluran', function (Blueprint $table) {
-            $table->integer('kode_jenis')-> primary();
-            $table->varchar('jenis_pengeluaran');
+            $table->integer('kode_jenis')->primary();
+            $table->string('jenis_pengeluaran');
             $table->text('deskripsi');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mustahiq', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik');
+            $table->integer('nik')->unique();
             $table->string('nama_jenis') ->length(255);
             $table->timestamps();
         });

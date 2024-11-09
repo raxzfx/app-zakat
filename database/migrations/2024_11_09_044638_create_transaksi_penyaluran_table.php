@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('transaksi_penyaluran', function (Blueprint $table) {
             $table->id();
-            $table->varchar('jenis_zakat');
-            $table->varchar('nama_penerima');
+            $table->string('jenis_zakat');
+            $table->string('nama_penerima');
             $table->foreignId('id_mustahiq')->references('id')->on('mustahiq')->onDelete('cascade');
             $table->text('alamat_penerima');
             $table->integer('jumlah');
             $table->date('tgl_transaksi');
+            $table->foreignId('nama_penerima')->references('kode_jenis')->on('mustahiq')->onDelete('cascade');
             $table->timestamps();
         });
     }

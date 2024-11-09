@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('alamat_penerima');
             $table->integer('jumlah');
             $table->date('tgl_transaksi');
+            $table->foreignId('jenis_zakat')->references('kode_jenis')->on('jenis_pengeluaran')->onDelete('cascade');
             $table->timestamps();
         });
     }

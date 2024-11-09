@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaksi_penerimaan', function (Blueprint $table) {
-            $table->id();
-            $table->string('jenis_zakat');
-            $table->string('nama_muzakki');
+            $table->id(); // Kolom id yang auto increment
+            $table->foreignId('id_muzaki')->constrained('muzakki')->onDelete('cascade'); // Mendefinisikan id_muzaki sebagai foreign key
             $table->integer('jumlah');
-            $table->varchar('bukti');
-            $table->date('tgl_transaksi') ;
-            $table->foreignId('id_muzakki')->references('id')->on('muzakki')->onDelete('cascade');
+            $table->string('bukti');
+            $table->date('tgl_transaksi');
+            $table->foreignId('jenis_zakat')->constrained('jenis_penerimaan', 'kode_jenis')->onDelete('cascade'); // Menggunakan foreignId untuk jenis_zakat
             $table->timestamps();
         });
     }
