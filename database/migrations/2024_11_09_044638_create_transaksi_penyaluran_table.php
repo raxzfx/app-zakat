@@ -16,7 +16,7 @@ return new class extends Migration
             $table->varchar('jenis_zakat');
             $table->varchar('nama_penerima');
             $table->foreignId('id_mustahiq')->references('id')->on('mustahiq')->onDelete('cascade');
-            $table->text('alamat');
+            $table->text('alamat_penerima');
             $table->integer('jumlah');
             $table->date('tgl_transaksi');
             $table->timestamps();
