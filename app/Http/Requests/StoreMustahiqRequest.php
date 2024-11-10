@@ -22,7 +22,10 @@ class StoreMustahiqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nik' => 'required|numeric|unique:users,nik',
+            'nama_lengkap' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:255',
         ];
     }
 }

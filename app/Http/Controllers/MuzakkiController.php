@@ -13,7 +13,8 @@ class MuzakkiController extends Controller
      */
     public function index()
     {
-        //
+        $muzakki = Muzakki::all();
+        return view('muzakki.index', compact('muzakki'));
     }
 
     /**
@@ -21,7 +22,7 @@ class MuzakkiController extends Controller
      */
     public function create()
     {
-        //
+        return view('muzakki.create');
     }
 
     /**
@@ -29,7 +30,14 @@ class MuzakkiController extends Controller
      */
     public function store(StoreMuzakkiRequest $request)
     {
-        //
+        Muzakki::create([
+            'nik' => $request->nik,
+            'nama_lengkap' => $request->nama_lengkap,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp
+        ]);
+
+        return redirect()->route('muzakki.index')->with('success', 'Muzakki created successfully.');
     }
 
     /**
@@ -37,7 +45,8 @@ class MuzakkiController extends Controller
      */
     public function show(Muzakki $muzakki)
     {
-        //
+        $muzakki = Muzakki::findOrFail($muzakki->id);
+        return view('muzakki.show', compact('muzakki'));
     }
 
     /**
@@ -45,22 +54,39 @@ class MuzakkiController extends Controller
      */
     public function edit(Muzakki $muzakki)
     {
-        //
+        $muzakki = Muzakki::findOrFail($muzakki->id);
+        return view('muzakki.edit', compact('muzakki'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateMuzakkiRequest $request, Muzakki $muzakki)
-    {
-        //
-    }
+{
+    $request->validate([
+        'nik' => 'required|numeric|unique:muzakkis,nik,' . $muzakki->id,
+        'nama_lengkap' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+        'no_telp' => 'required|string|max:255',
+    ]);
+
+    $muzakki->update([
+        'nik' => $request->nik,
+        'nama_lengkap' => $request->nama_lengkap,
+        'alamat' => $request->alamat,
+        'no_telp' => $request->no_telp,
+    ]);
+
+    return redirect()->route('muzakki.index')->with('success', 'Muzakki updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Muzakki $muzakki)
     {
-        //
+        $muzakki->delete();
+        return redirect()->route('muzakki.index')->with('success', 'Muzakki deleted successfully.');
     }
 }

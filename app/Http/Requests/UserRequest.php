@@ -21,6 +21,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        //update
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $this->user,

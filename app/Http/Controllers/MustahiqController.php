@@ -13,7 +13,8 @@ class MustahiqController extends Controller
      */
     public function index()
     {
-        //
+        $mustahiq = Mustahiq::all();
+        return view('mustahiq.index', compact('mustahiq'));
     }
 
     /**
@@ -21,7 +22,7 @@ class MustahiqController extends Controller
      */
     public function create()
     {
-        //
+        return view('mustahiq.create' );
     }
 
     /**
@@ -29,7 +30,11 @@ class MustahiqController extends Controller
      */
     public function store(StoreMustahiqRequest $request)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|string|max:255',
+            'nik' => 'required|numeric|unique:mustahiq,nik',
+            'nama_jenis' =>'required|string|max:255',
+        ]);
     }
 
     /**
@@ -37,7 +42,8 @@ class MustahiqController extends Controller
      */
     public function show(Mustahiq $mustahiq)
     {
-        //
+        $mustahiq = Mustahiq::findOrFail($mustahiq->id);
+        return view('mustahiq.show', compact('mustahiq'));
     }
 
     /**
@@ -45,7 +51,7 @@ class MustahiqController extends Controller
      */
     public function edit(Mustahiq $mustahiq)
     {
-        //
+        return view('mustahiq.edit', compact('mustahiq'));
     }
 
     /**
@@ -53,7 +59,19 @@ class MustahiqController extends Controller
      */
     public function update(UpdateMustahiqRequest $request, Mustahiq $mustahiq)
     {
-        //
+        $request->validate([
+        'kode_jenis' => 'required|string|max:255',
+        'nik' => 'required|numeric|unique:mustahiq,nik,' . $mustahiq->id,
+        'nama_jenis' =>'required|string|max:255',
+        ]);
+
+        $mustahiq->update([
+            'kode_jenis' => $request->kode_jenis,
+            'nik' => $request->nik,
+            'nama_jenis' =>$request->nama_jenis,
+        ]);
+
+        return redirect()->route('mustahiq.index')->with('success', 'Mustahiq updated successfully.');
     }
 
     /**
@@ -61,6 +79,7 @@ class MustahiqController extends Controller
      */
     public function destroy(Mustahiq $mustahiq)
     {
-        //
+        $mustahiq->delete();
+        return redirect()->route('mustahiq.index')->with('success', 'Mustahiq deleted successfully.');
     }
 }
