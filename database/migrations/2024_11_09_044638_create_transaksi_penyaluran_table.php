@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('transaksi_penyaluran', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_zakat');
-            $table->string('nama_penerima');
-            $table->foreignId('id_mustahiq')->references('id')->on('mustahiq')->onDelete('cascade');
+            $table->string('jenis_zakat')->nullable();
+            $table->foreignId('id_mustahiq')->constrained('mustahiq')->onDelete('cascade'); // Mengatur id_mustahiq sebagai foreign key
             $table->text('alamat_penerima');
             $table->integer('jumlah');
             $table->date('tgl_transaksi');
-            $table->foreignId('nama_penerima')->references('kode_jenis')->on('mustahiq')->onDelete('cascade');
+            $table->foreignId('nama_penerima')->references('id')->on('mustahiq')->onDelete('cascade'); // Mengatur nama_penerima sebagai foreign key
             $table->timestamps();
         });
     }

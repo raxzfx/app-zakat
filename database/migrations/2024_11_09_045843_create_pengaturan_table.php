@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama_mesjid');
             $table->text('alamat');
-            $table->varchar('koordinat');
-            $table->varchar('nama_pimpinan');
-            $table->varchar('no_telp');
-            $table->varchar('no_hp');
-            $table->varchar('email');
+            $table->string('koordinat');
+            $table->string('nama_pimpinan');
+            $table->string('no_telp');
+            $table->string('no_hp');
+            $table->string('email'); 
             $table->timestamps();
         });
     }
