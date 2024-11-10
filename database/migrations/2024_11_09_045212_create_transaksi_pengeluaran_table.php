@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('transaksi_pengeluaran', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_zakat');
             $table->string('nama_pengeluaran');
             $table->text('alamat_penerima');
             $table->integer('jumlah');

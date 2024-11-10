@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('informasi', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('content') ->nullable();
-            $table->integer('kategori_id');
-            $table->varchar('img') -> length(255);
-            $table->bool('status') -> default(0);
+            $table->text('content')->nullable();
+            $table->string('img')->length(255);
+            $table->boolean('status')->default(0);
             $table-> foreignId('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
             $table->timestamps();
         });

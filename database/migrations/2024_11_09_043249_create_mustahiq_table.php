@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mustahiq', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_jenis');
             $table->integer('nik')->unique();
             $table->string('nama_jenis') ->length(255);
             $table->timestamps();
