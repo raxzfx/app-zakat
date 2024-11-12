@@ -14,7 +14,14 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'rasya' : '#f7eedd',
+                'biru' : '#008DDA',
+                'toska':'#41C9E2',
+               },
         },
     },
+    
     plugins: [],
 };
+ 
