@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_penyaluran', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_zakat')->nullable();
-            $table->foreignId('id_mustahiq')->constrained('mustahiq')->onDelete('cascade'); // Mengatur id_mustahiq sebagai foreign key
+            $table->foreignId('jenis_zakat')->references('kode_jenis')->on('jenis_penyaluran')->onDelete('cascade'); // Mengatur id_muzaki sebagai foreign key
             $table->text('alamat_penerima');
             $table->integer('jumlah');
             $table->date('tgl_transaksi');
