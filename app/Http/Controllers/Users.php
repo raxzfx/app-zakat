@@ -6,17 +6,26 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class Users extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+            // Menggunakan Eloquent dengan pagination
+            $perPage = $request->get('per_page', 15); // Default ke 15 jika tidak ada parameter
+            $users = User::paginate($perPage); // 15 adalah jumlah item per halaman
+        
+            return view('DataMaster.users.index', compact('users'));
+        
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -99,3 +108,5 @@ class Users extends Controller
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }
+
+
