@@ -18,7 +18,7 @@ class Users extends Controller
     public function index(Request $request)
     {
             // Menggunakan Eloquent dengan pagination
-            $perPage = $request->get('per_page', 15); // Default ke 15 jika tidak ada parameter
+            $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
             $users = User::paginate($perPage); // 15 adalah jumlah item per halaman
         
             return view('DataMaster.users.index', compact('users'));

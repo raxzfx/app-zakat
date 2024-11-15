@@ -9,6 +9,7 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
         './node_modules/flyonui/dist/js/*.js',
+        './node_modules/flatpickr/**/*.js', 
     ],
     theme: {
         extend: {
@@ -22,6 +23,11 @@ export default {
                },
         },
     },
+
+    flyonui: {
+        vendors: true // Enable vendor-specific CSS generation
+      },
+
     
     plugins: [
         require('flyonui'), 

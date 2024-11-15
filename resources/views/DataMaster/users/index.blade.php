@@ -44,7 +44,7 @@
 
 
         <!-- table -->
-        <div class="overflow-x-auto w-full mt-6">
+        <div class="overflow-x-auto w-full mt-6 mb-1">
             <table class="w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
@@ -59,7 +59,7 @@
                 <tbody>
                     @foreach ($users as $index =>$user)
                     <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm"> {{$index+1}} </td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $users->firstItem() + $index }} </td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->nik}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->name}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->email}}</td>
