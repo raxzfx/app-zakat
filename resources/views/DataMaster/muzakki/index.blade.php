@@ -1,5 +1,5 @@
 <x-layout>
-<div class="p-4">
+ <div class="p-4">
         <h1 class="uppercase text-xl">master data muzakki</h1>
 
         <div class="flex items-center justify-between mt-4 ">
@@ -8,29 +8,29 @@
                                 <ion-icon name="download-outline"></ion-icon>
                             </button>
 
-        <div>
-        <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+        <div class="flex items-center">
+        <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
                                 <span class="mr-2">filter data</span>
                                 <ion-icon name="filter-outline"></ion-icon>
                             </button>
-        <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+        <a href="{{ route('users.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
                                 <span class="mr-2">add data</span>
                                 <ion-icon name="add-circle-outline"></ion-icon>
-                            </button>
+                            </a>
         </div>
         </div>
 
         <div class="flex items-center justify-between mt-4 text-sm">
 
         <div class="flex items-center">
-             <span>show</span>
-        <select class="select w-15 h-5 rounded-full text-sm mx-2" aria-label="Pilled select">
-        <option>10</option>
-        <option>15</option>
-        <option>25</option>
-        </select>
-            <span>entries</span>
-        </div>
+    <span>Show</span>
+    <select id="entriesSelect" class="select w-15 h-5 rounded-full text-sm mx-2" aria-label="Pilled select">
+        <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+        <option value="15" {{ request('per_page') == 15 ? 'selected' : '' }}>15</option>
+        <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+    </select>
+    <span>entries</span>
+</div>
        
 
             <label for="table-search" class="sr-only">Search</label>
@@ -44,73 +44,55 @@
 
 
         <!-- table -->
-        <div class="overflow-x-auto w-full mt-6">
+        <div class="overflow-x-auto w-full mt-6 mb-1">
             <table class="w-full bg-white border border-gray-200">
                 <thead>
                     <tr>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">No</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nik</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nama lengkap</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">email</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">username</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">password</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($muzakki as $index =>$pemberi)
                     <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">1</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">69696969</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">roni pantek</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rongrong</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rong1234</td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $pemberi->firstItem() + $index }} </td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->nik}}</td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->name}}</td>
+                        @if ($user->email != null)
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ strlen($pemberi->email) > 7 ? substr($pemberi->email, 0, 7) . '...' : $pemberi->email }}</td>
+                        @else
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">belum terdaftar</td>
+                        @endif
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
+                        {{ strlen($pemberi->password) > 7 ? substr($pemberi->password, 0, 7) . '...' : $pemberi->password }}
+                        </td>   
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                             <!-- button edit -->
-                            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md ">
+                            <a href="{{ route('muzakki.edit', $pemberi->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
                                 <ion-icon name="create-outline"></ion-icon>
-                            </button>
-                            <!-- button delete -->
-                            <button type="button" class="bg-red-600 text-white py-1 px-3 rounded-md ">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
+                            </a>
+                            <!-- a delete -->
+                            <form action="{{ route('muzakki.destroy', $pemberi->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
+        <ion-icon name="trash-outline"></ion-icon>
+    </button>
+</form>
+
                         </td>
                     </tr>
-                    <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">2</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">69696969</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">roni pantek</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rongrong</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rong1234</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
-                            <!-- button edit -->
-                            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md hover:bg-toska-600">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </button>
-                            <!-- button delete -->
-                            <button type="button" class="bg-red-600 text-white py-1 px-3 rounded-md hover:bg-toska-600">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">3</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">69696969</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">roni pantek</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rongrong</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">rong1234</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
-                            <!-- button edit -->
-                            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md hover:bg-toska-600">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </button>
-                            <!-- button delete -->
-                            <button type="button" class="bg-red-600 text-white py-1 px-3 rounded-md hover:bg-toska-600">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
+        {{ $muzakki->links() }}
         <!-- end table -->
     </div>   
 </x-layout>

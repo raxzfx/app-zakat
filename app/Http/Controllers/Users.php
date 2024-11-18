@@ -18,6 +18,8 @@ class Users extends Controller
      */
     public function index(Request $request)
     {
+
+        
             // Menggunakan Eloquent dengan pagination
             $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
             $users = User::paginate($perPage); // 15 adalah jumlah item per halaman
@@ -42,7 +44,7 @@ class Users extends Controller
     public function store(Request $request)
 {
     if ($request->password != $request->password_confirmation) {
-        return redirect()->back()->with('error', 'Password ga sama anjg');
+        return redirect()->back()->with('error', 'Password tidak sesuai');
     }
 
     if ($request->password <= 8) {
@@ -50,7 +52,7 @@ class Users extends Controller
     }
 
     if (User::where('username', $request->username)->exists()) {
-        return redirect()->back()->with('error', 'Username sudah ada');
+        return redirect()->back()->with('error', 'Username sudah ada, gunakan');
     }
     
 

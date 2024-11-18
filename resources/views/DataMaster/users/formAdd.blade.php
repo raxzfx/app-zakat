@@ -58,7 +58,7 @@
                 <span class="label-text">Password</span>
               </div>
               <div class="input-group">
-                <input id="password" type="password" class="input" placeholder=" password" required name="password" />
+                <input id="password" type="password" class="input" placeholder=" password"  name="password" />
                 <span class="input-group-text">
                   <button type="button" data-toggle-password='{ "target": "#password" }' class="block">
                     <span class="icon-[tabler--eye] text-base-content/80 password-active:block hidden size-4 flex-shrink-0"></span>
@@ -77,7 +77,7 @@
                 <span class="label-text">confirm Password</span>
               </div>
               <div class="input-group">
-                <input id="password" type="password" class="input" placeholder=" password" required name="password_confirmation" />
+                <input id="password" type="password" class="input" placeholder=" password"  name="password_confirmation" />
                 <span class="input-group-text">
                   <button type="button" data-toggle-password='{ "target": "#password" }' class="block">
                     <span class="icon-[tabler--eye] text-base-content/80 password-active:block hidden size-4 flex-shrink-0"></span>

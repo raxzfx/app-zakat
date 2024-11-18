@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Muzakki;
 use App\Http\Requests\StoreMuzakkiRequest;
 use App\Http\Requests\UpdateMuzakkiRequest;
+use Illuminate\Http\Request;
 
 class MuzakkiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $muzakki = Muzakki::all();
-        return view('muzakki.index', compact('muzakki'));
+        
+
+          // Menggunakan Eloquent dengan pagination
+          $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
+        $muzakki = Muzakki::paginate($perPage);
+        return view('DataMaster.muzakki.index', compact('muzakki'));
     }
 
     /**

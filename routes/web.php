@@ -37,6 +37,10 @@ Route::delete('/DataMaster/users/{id}',
     [Users::class, 'destroy']
 )-> name('users.destroy');
 
+Route::get('/users', [Users::class, 'index'])->name('users.index');
+
+Route::get('/DataMaster/muzakki', [MuzakkiController::class, 'index'])->name('muzakki.index');
+
 
 ?>
 
