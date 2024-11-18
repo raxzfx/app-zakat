@@ -13,4 +13,8 @@ class Mustahiq extends Model
         'nik',
         'nama_jenis',
     ];
+
+    public function TransaksiPenyaluran() {
+        return $this->hasMany(TransaksiPenyaluran::class, 'nama_penerima' , 'id');
+    }
 }

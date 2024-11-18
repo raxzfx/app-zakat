@@ -11,7 +11,7 @@ class StoreMustahiqRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,9 @@ class StoreMustahiqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => 'required|numeric|unique:users,nik',
-            'nama_lengkap' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:255',
+            'kode_jenis' => 'required|string|max:255',
+            'nik' => 'required|numeric|unique:mustahiq,nik',
+            'nama_jenis' =>'required|string|max:255',
         ];
     }
 }

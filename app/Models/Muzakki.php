@@ -14,4 +14,8 @@ class Muzakki extends Model
         'alamat',
         'no_telp',
     ];
+
+    public function transaksiPenerimaan(){
+        return $this->hasMany(TransaksiPenerimaan::class , 'id_muzaki', 'id');
+    }
 }

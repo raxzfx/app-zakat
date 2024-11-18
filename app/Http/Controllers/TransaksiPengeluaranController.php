@@ -13,7 +13,8 @@ class TransaksiPengeluaranController extends Controller
      */
     public function index()
     {
-        //
+        $transPengeluaran = TransaksiPengeluaran::with( 'jenisPenyaluran')->get();
+        return view('transaksi-pengeluaran.index', compact('transPengeluaran'));
     }
 
     /**
@@ -21,7 +22,7 @@ class TransaksiPengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaksi-pengeluaran.create');
     }
 
     /**
@@ -29,23 +30,37 @@ class TransaksiPengeluaranController extends Controller
      */
     public function store(StoreTransaksiPengeluaranRequest $request)
     {
-        //
+        
+        TransaksiPengeluaran::create([
+            'nama_pengeluaran' => $request->nama_pengeluaran,
+            'alamat_penerima' => $request->alamat_penerima,
+            'jumlah' => $request->jumlah,
+            'jenis_zakat' => $request->jenis_zakat,
+            'tgl_transaksi' => $request->tgl_transaksi
+        ]);
+
+        redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(TransaksiPengeluaran $transaksiPengeluaran)
-    {
-        //
-    }
-
+{
+    // Ambil data transaksi pengeluaran beserta relasi jenisPenyaluran
+    $transPengeluaran = TransaksiPengeluaran::with('jenisPenyaluran')->findOrFail($transaksiPengeluaran->id);
+    
+    // Kembalikan ke view dengan membawa data transaksi pengeluaran
+    return view('transaksi-pengeluaran.show', compact('transPengeluaran'));
+}
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(TransaksiPengeluaran $transaksiPengeluaran)
     {
-        //
+            $transPengeluaran = TransaksiPengeluaran::with('jenisPenyaluran')->findOrFail($transaksiPengeluaran->id);
+
+        return view('transaksi-pengeluaran.edit', compact('transPengeluaran'));
     }
 
     /**
@@ -53,7 +68,15 @@ class TransaksiPengeluaranController extends Controller
      */
     public function update(UpdateTransaksiPengeluaranRequest $request, TransaksiPengeluaran $transaksiPengeluaran)
     {
-        //
+        $transaksiPengeluaran->update([
+            'nama_pengeluaran' => $request->nama_pengeluaran,
+            'alamat_penerima' => $request->alamat_penerima,
+            'jumlah' => $request->jumlah,
+            'jenis_zakat' => $request->jenis_zakat,
+            'tgl_transaksi' => $request->tgl_transaksi
+        ]);
+
+        return redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran updated successfully.');
     }
 
     /**
@@ -61,6 +84,7 @@ class TransaksiPengeluaranController extends Controller
      */
     public function destroy(TransaksiPengeluaran $transaksiPengeluaran)
     {
-        //
+        $transaksiPengeluaran->delete();
+        return redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran deleted successfully.');
     }
 }
