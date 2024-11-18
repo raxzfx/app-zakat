@@ -13,9 +13,12 @@ class LoginRequest extends FormRequest
 {
 
     protected $id_type;
+
+    
     protected function prepareForValidation(){
 
-        if(filter_var($this->input('email'), FILTER_VALIDATE_EMAIL)){
+        $id_user = $this->input('id_user'); // Ambil input dari id_user
+        if(filter_var($id_user, FILTER_VALIDATE_EMAIL)){
             $this->id_type = 'email';
         }else{
             $this->id_type = 'username';
