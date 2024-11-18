@@ -21,10 +21,11 @@ class UserSeeder extends Seeder
 
     for ($i = 0; $i < 50; $i++) {
         User::create([
-            'nik' => $faker->numerify('#####'),
+            'nik' => $faker->numerify('################'),
             'name' => $faker->name,
             'email' => $faker->unique()->safeEmail,
             'password' => Hash::make('password'),
+            'username' => $faker->unique()->userName
         ]);
     }
 }

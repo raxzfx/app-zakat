@@ -64,7 +64,7 @@
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->nik}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->name}}</td>
                         @if ($user->email != null)
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->email}}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ strlen($user->email) > 7 ? substr($user->email, 0, 7) . '...' : $user->email }}</td>
                         @else
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">belum terdaftar</td>
                         @endif
