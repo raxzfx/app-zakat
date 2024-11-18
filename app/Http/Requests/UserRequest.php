@@ -24,9 +24,10 @@ class UserRequest extends FormRequest
         //update
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $this->user,
-            'password' => 'nullable|min:8|',
-            'nik' => 'required|numeric|unique:users,nik,' ,
+            'email' => 'nullable|email|unique:users,email,' . $this->route('id'),  // Validasi email dan pengecualian untuk user yang sedang diupdate
+            'username' => 'required|string|max:255',
+            'nik' => 'required|string|max:16',
+            'password' => 'nullable|string|min:8',  // Password boleh kosong, jika ada di-input, baru divalidasi
         ];
     }
 }

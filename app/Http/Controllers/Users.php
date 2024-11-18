@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
+
 class Users extends Controller
 {
     /**
@@ -32,7 +33,7 @@ class Users extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('DataMaster.users.formAdd');
     }
 
     /**
@@ -40,15 +41,30 @@ class Users extends Controller
      */
     public function store(Request $request)
 {
+    if ($request->password != $request->password_confirmation) {
+        return redirect()->back()->with('error', 'Password ga sama anjg');
+    }
+
+    if ($request->password <= 8) {
+        return redirect()->back()->with('error', 'Password minimal 8 karakter');
+    }
+
+    if (User::where('username', $request->username)->exists()) {
+        return redirect()->back()->with('error', 'Username sudah ada');
+    }
+    
+
     $request->validate([
+        'nik' => 'required|numeric|unique:users,nik',
         'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
+        'username' => 'required|string|max:255|unique:users,username',
         'password' => 'required|min:8|confirmed',
     ]);
 
     User::create([
+        'nik' => $request->nik,
         'name' => $request->name,
-        'email' => $request->email,
+        'username' => $request->username,
         'password' => Hash::make($request->password),
     ]);
 
@@ -70,10 +86,11 @@ class Users extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
-
-        return view('users.edit', compact('user'));
+        $user = User::findOrFail($id);
+        return view('DataMaster.users.formEdit', compact('user'));
     }
+    
+
 
     /**
      * Update the specified resource in storage.
@@ -87,6 +104,8 @@ class Users extends Controller
         // Update hanya kolom yang diisi
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->username = $request->username;
+        $user->nik = $request->nik;
 
         // Jika ada input password, hash dan simpan
         if ($request->filled('password')) {
