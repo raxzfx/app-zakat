@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $this->user,
             'password' => 'nullable|min:8|',
-            'nik' => 'required|numeric|unique:users,nik,' ,
+            'nik' => 'required|numeric|unique:users,nik,' . $this->user,
         ];
     }
 }

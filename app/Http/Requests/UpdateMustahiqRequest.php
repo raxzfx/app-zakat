@@ -11,7 +11,7 @@ class UpdateMustahiqRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateMustahiqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'kode_jenis' => 'required|string|max:255',
+        'nik' => 'required|numeric|unique:mustahiq,nik,' . $this->id,
+        'nama_jenis' =>'required|string|max:255',
         ];
     }
 }

@@ -30,21 +30,21 @@ class Users extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:8|confirmed',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
-    User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-    return redirect()->route('users.index')->with('success', 'User created successfully.');
-}
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
+    }
 
 
     /**
@@ -71,23 +71,31 @@ class Users extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        // Cari user yang akan diupdate berdasarkan ID
         $user = User::findOrFail($id);
 
-        //user yg diupdate rules nya ambil dari UserRequests
+        // Validasi input akan dilakukan melalui UserRequest
 
-        // Update hanya kolom yang diisi
+        // Update hanya kolom yang diisi oleh user
         $user->name = $request->name;
         $user->email = $request->email;
 
         // Jika ada input password, hash dan simpan
         if ($request->filled('password')) {
+            // Pastikan password yang baru cukup aman
             $user->password = Hash::make($request->password);
         }
 
+        // Update data lainnya jika diperlukan, contoh:
+        $user->nik = $request->nik;
+
+        // Simpan perubahan ke database
         $user->save();
 
+        // Redirect kembali ke daftar user dengan pesan sukses
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -63,6 +63,7 @@ class MuzakkiController extends Controller
      */
     public function update(UpdateMuzakkiRequest $request, Muzakki $muzakki)
 {
+
     $request->validate([
         'nik' => 'required|numeric|unique:muzakkis,nik,' . $muzakki->id,
         'nama_lengkap' => 'required|string|max:255',
