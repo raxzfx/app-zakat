@@ -22,7 +22,11 @@ class UpdateInformasiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'judul' =>'required|string|max:255',
+            'content' =>'required|string|max:255',
+            'img' =>'required|string|max:255',
+            'status' =>'required|numeric|',
+            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
         ];
     }
 }

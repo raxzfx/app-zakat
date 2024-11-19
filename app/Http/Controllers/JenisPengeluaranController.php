@@ -13,7 +13,8 @@ class JenisPengeluaranController extends Controller
      */
     public function index()
     {
-        //
+        $jenisPengeluaran = JenisPengeluaran::all();
+        return view('jenisPengeluaran.index', compact('jenisPengeluaran'));
     }
 
     /**
@@ -21,7 +22,7 @@ class JenisPengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('jenisPengeluaran.create' );
     }
 
     /**
@@ -29,7 +30,11 @@ class JenisPengeluaranController extends Controller
      */
     public function store(StoreJenisPengeluaranRequest $request)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_pengeluaran,kode_jenis',
+            'jenis_pengeluaran' => 'required|string|max:255',
+            'deskripsi' =>'required|string|max:255',
+        ]);
     }
 
     /**
@@ -37,7 +42,8 @@ class JenisPengeluaranController extends Controller
      */
     public function show(JenisPengeluaran $jenisPengeluaran)
     {
-        //
+        $jenisPengeluaran = JenisPengeluaran::findOrFail($jenisPengeluaran->kode_jenis);
+        return view('jenisPengeluaran.show', compact('jenisPengeluaran'));
     }
 
     /**
@@ -45,7 +51,7 @@ class JenisPengeluaranController extends Controller
      */
     public function edit(JenisPengeluaran $jenisPengeluaran)
     {
-        //
+        return view('jenisPengeluaran.edit', compact('jenisPengeluaran'));
     }
 
     /**
@@ -53,7 +59,19 @@ class JenisPengeluaranController extends Controller
      */
     public function update(UpdateJenisPengeluaranRequest $request, JenisPengeluaran $jenisPengeluaran)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_pengeluaran,kode_jenis',
+            'jenis_pengeluaran' =>'required|string|max:255',
+            'deskripsi' =>'required|string|max:255',
+            ]);
+    
+            $jenisPengeluaran->update([
+                'kode_jenis' => $request->kode_jenis,
+                'jenis_pengeluaran' => $request->jenis_pengeluaran,
+                'deskripsi' => $request->deskripsi,
+            ]);
+    
+            return redirect()->route('jenisPengeluaran.index')->with('success', 'Jenis Pengeluaran updated successfully.');
     }
 
     /**
@@ -61,6 +79,7 @@ class JenisPengeluaranController extends Controller
      */
     public function destroy(JenisPengeluaran $jenisPengeluaran)
     {
-        //
+        $jenisPengeluaran->delete();
+        return redirect()->route('jenisPengeluaran.index')->with('success', 'Jenis Pengeluaran deleted successfully.');
     }
 }

@@ -13,7 +13,8 @@ class JenisPenyaluranController extends Controller
      */
     public function index()
     {
-        //
+        $jenisPenyaluran = JenisPenyaluran::all();
+        return view('jenisPenyaluran.index', compact('jenisPenyaluran'));
     }
 
     /**
@@ -21,7 +22,7 @@ class JenisPenyaluranController extends Controller
      */
     public function create()
     {
-        //
+        return view('jenisPenyaluran.create' );
     }
 
     /**
@@ -29,7 +30,11 @@ class JenisPenyaluranController extends Controller
      */
     public function store(StoreJenisPenyaluranRequest $request)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
+            'jenis_Pengeluaran' => 'required|string|max:255',
+            'deskripsi' =>'required|string|max:255',
+        ]);
     }
 
     /**
@@ -37,7 +42,8 @@ class JenisPenyaluranController extends Controller
      */
     public function show(JenisPenyaluran $jenisPenyaluran)
     {
-        //
+        $jenisPenyaluran = JenisPenyaluran::findOrFail($jenisPenyaluran->kode_jenis);
+        return view('jenisPenyaluran.show', compact('jenisPenyaluran'));
     }
 
     /**
@@ -45,7 +51,7 @@ class JenisPenyaluranController extends Controller
      */
     public function edit(JenisPenyaluran $jenisPenyaluran)
     {
-        //
+        return view('jenisPenyaluran.edit', compact('jenisPenyaluran'));
     }
 
     /**
@@ -53,7 +59,19 @@ class JenisPenyaluranController extends Controller
      */
     public function update(UpdateJenisPenyaluranRequest $request, JenisPenyaluran $jenisPenyaluran)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
+            'jenis_Pengeluaran' =>'required|string|max:255',
+            'deskripsi' =>'required|string|max:255',
+            ]);
+    
+            $jenisPenyaluran->update([
+                'kode_jenis' => $request->kode_jenis,
+                'jenis_Pengeluaran' => $request->jenis_Penyaluran,
+                'deskripsi' => $request->deskripsi,
+            ]);
+    
+            return redirect()->route('jenisPenyaluran.index')->with('success', 'Jenis Penyaluran updated successfully.');
     }
 
     /**
@@ -61,6 +79,7 @@ class JenisPenyaluranController extends Controller
      */
     public function destroy(JenisPenyaluran $jenisPenyaluran)
     {
-        //
+        $jenisPenyaluran->delete();
+        return redirect()->route('jenisPenyaluran.index')->with('success', 'Jenis Penyaluran deleted successfully.');
     }
 }

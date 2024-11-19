@@ -22,7 +22,8 @@ class StoreJenisPenerimaanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
+            'deskripsi' =>'required|string|max:255',
         ];
     }
 }

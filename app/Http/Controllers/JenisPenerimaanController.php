@@ -13,7 +13,8 @@ class JenisPenerimaanController extends Controller
      */
     public function index()
     {
-        //
+        $jenisPenerimaan = JenisPenerimaan::all();
+        return view('jenisPenerimaan.index', compact('jenisPenerimaan'));
     }
 
     /**
@@ -21,7 +22,7 @@ class JenisPenerimaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('jenisPeneriamaan.create' );
     }
 
     /**
@@ -29,7 +30,10 @@ class JenisPenerimaanController extends Controller
      */
     public function store(StoreJenisPenerimaanRequest $request)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_penerimaan,kode_jenis',
+            'deskripsi' =>'required|string|max:255',
+        ]);
     }
 
     /**
@@ -37,7 +41,8 @@ class JenisPenerimaanController extends Controller
      */
     public function show(JenisPenerimaan $jenisPenerimaan)
     {
-        //
+        $jenisPenerimaan = JenisPenerimaan::findOrFail($jenisPenerimaan->kode_jenis);
+        return view('jenisPenerimaan.show', compact('jenisPenerimaan'));
     }
 
     /**
@@ -45,7 +50,7 @@ class JenisPenerimaanController extends Controller
      */
     public function edit(JenisPenerimaan $jenisPenerimaan)
     {
-        //
+        return view('jenisPenerimaan.edit', compact('jenisPenerimaan'));
     }
 
     /**
@@ -53,7 +58,17 @@ class JenisPenerimaanController extends Controller
      */
     public function update(UpdateJenisPenerimaanRequest $request, JenisPenerimaan $jenisPenerimaan)
     {
-        //
+        $request->validate([
+            'kode_jenis' => 'required|numeric|unique:jenis_penerimaan,kode_jenis',
+            'deskripsi' =>'required|string|max:255',
+            ]);
+    
+            $jenisPenerimaan->update([
+                'kode_jenis' => $request->kode_jenis,
+                'deskripsi' => $request->deskripsi,
+            ]);
+    
+            return redirect()->route('jenisPenerimaan.index')->with('success', 'Jenis Penerimaan updated successfully.');
     }
 
     /**
@@ -61,6 +76,7 @@ class JenisPenerimaanController extends Controller
      */
     public function destroy(JenisPenerimaan $jenisPenerimaan)
     {
-        //
+        $jenisPenerimaan->delete();
+        return redirect()->route('jenisPenerimaan.index')->with('success', 'Jenis Penerimaan deleted successfully.');
     }
 }
