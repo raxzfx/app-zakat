@@ -87,7 +87,7 @@ class Users extends Controller
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
-
+}
 
     /**
      * Display the specified resource.
@@ -97,6 +97,7 @@ class Users extends Controller
         $user = User::findOrFail($id);
         return view('users.show', compact('user'));
     }
+/******  c7fb6db1-16e9-4936-920a-0b6adfb74853  *******/
 
     /**
      * Show the form for editing the specified resource.
