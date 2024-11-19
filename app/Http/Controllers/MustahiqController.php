@@ -30,11 +30,13 @@ class MustahiqController extends Controller
      */
     public function store(StoreMustahiqRequest $request)
     {
-        $request->validate([
-            'kode_jenis' => 'required|string|max:255',
-            'nik' => 'required|numeric|unique:mustahiq,nik',
-            'nama_jenis' =>'required|string|max:255',
-        ]);
+        Mustahiq::create([
+            'kode_jenis' => $request->kode_jenis,
+            'nik' => $request->nik,
+            'nama_jenis' =>$request->nama_jenis,
+        ]); 
+
+        return redirect()->route('mustahiq.index')->with('success', 'Mustahiq created successfully.');  
     }
 
     /**
@@ -59,12 +61,6 @@ class MustahiqController extends Controller
      */
     public function update(UpdateMustahiqRequest $request, Mustahiq $mustahiq)
     {
-        $request->validate([
-        'kode_jenis' => 'required|string|max:255',
-        'nik' => 'required|numeric|unique:mustahiq,nik,' . $mustahiq->id,
-        'nama_jenis' =>'required|string|max:255',
-        ]);
-
         $mustahiq->update([
             'kode_jenis' => $request->kode_jenis,
             'nik' => $request->nik,

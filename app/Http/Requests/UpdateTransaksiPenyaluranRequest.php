@@ -22,7 +22,11 @@ class UpdateTransaksiPenyaluranRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'jenis_zakat' => 'required|max:255',
+            'nama_penerima' => 'required|string|max:255',
+            'alamat_penerima' => 'required|string|max:255',
+            'jumlah' => 'required|integer|min:1',
+            'tgl_transaksi' => 'required|date', 
         ];
     }
 }

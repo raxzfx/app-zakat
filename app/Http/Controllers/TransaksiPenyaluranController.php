@@ -13,7 +13,8 @@ class TransaksiPenyaluranController extends Controller
      */
     public function index()
     {
-        //
+        $trasnPenyaluran = TransaksiPenyaluran::with('mustahiq' , 'jenisZakat')->get();
+        return view('transaksi-penyaluran.index', compact('trasnPenyaluran'));
     }
 
     /**
@@ -21,7 +22,7 @@ class TransaksiPenyaluranController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaksi-penyaluran.create');
     }
 
     /**
@@ -29,7 +30,16 @@ class TransaksiPenyaluranController extends Controller
      */
     public function store(StoreTransaksiPenyaluranRequest $request)
     {
-        //
+        TransaksiPenyaluran::create([
+            'jenis_zakat' => $request->jenis_zakat,
+            'nama_penerima' => $request->nama_penerima,
+            'alamat_penerima' => $request->alamat_penerima,
+            'jumlah' => $request->jumlah,
+            'tgl_transaksi' => $request->tgl_transaksi
+        ]);
+
+        return redirect()->route('transaksi-penyaluran.index')->with('success', 'Transaksi Penyaluran created successfully.');
+
     }
 
     /**
@@ -37,7 +47,9 @@ class TransaksiPenyaluranController extends Controller
      */
     public function show(TransaksiPenyaluran $transaksiPenyaluran)
     {
-        //
+        $transaksiPenyaluran = TransaksiPenyaluran::with('mustahiq' , 'jenisZakat')->findOrFail($transaksiPenyaluran->id);
+
+        return view('transaksi-penyaluran.show', compact('transaksiPenyaluran'));
     }
 
     /**
@@ -45,7 +57,7 @@ class TransaksiPenyaluranController extends Controller
      */
     public function edit(TransaksiPenyaluran $transaksiPenyaluran)
     {
-        //
+        return view('transaksi-penyaluran.edit', compact('transaksiPenyaluran'));
     }
 
     /**
@@ -53,7 +65,16 @@ class TransaksiPenyaluranController extends Controller
      */
     public function update(UpdateTransaksiPenyaluranRequest $request, TransaksiPenyaluran $transaksiPenyaluran)
     {
-        //
+
+        $transaksiPenyaluran->update([
+            'jenis_zakat' => $request->jenis_zakat,
+            'nama_penerima' => $request->nama_penerima,
+            'alamat_penerima' => $request->alamat_penerima,
+            'jumlah' => $request->jumlah,
+            'tgl_transaksi' => $request->tgl_transaksi
+        ]);
+
+        return redirect()->route('transaksi-penyaluran.index')->with('success', 'Transaksi Penyaluran updated successfully.');
     }
 
     /**
@@ -61,6 +82,7 @@ class TransaksiPenyaluranController extends Controller
      */
     public function destroy(TransaksiPenyaluran $transaksiPenyaluran)
     {
-        //
+        $transaksiPenyaluran->delete();
+        return redirect()->route('transaksi-penyaluran.index')->with('success', 'Transaksi Penyaluran deleted successfully.');
     }
 }

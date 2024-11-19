@@ -11,7 +11,7 @@ class StoreMuzakkiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreMuzakkiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nik' => 'required|numeric|unique:muzakkis,nik',
+            'nama_lengkap' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:255',
         ];
     }
 }

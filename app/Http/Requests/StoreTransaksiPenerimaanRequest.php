@@ -7,22 +7,45 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreTransaksiPenerimaanRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Tentukan apakah pengguna memiliki otorisasi untuk melakukan request ini.
      */
-    public function authorize(): bool
+    public function authorize()
     {
-        return false;
+        return true;  // Jika Anda ingin memberikan otorisasi untuk semua pengguna
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * Aturan validasi untuk request ini.
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'id_muzakki' => 'required|integer|exists:muzakkis,id',
+            'jenis_zakat' => 'required|string|exists:jenis_zakat,kode_jenis',
+            'tgl_transaksi' => 'required|date',
+            'jumlah' => 'required|integer',
+            'bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
+    }
+
+    /**
+     * Pesan kesalahan kustom untuk aturan validasi.
+     */
+    public function messages()
+    {
+        return [
+            'id_muzakki.required' => 'ID Muzakki wajib diisi.',
+            'id_muzakki.integer' => 'ID Muzakki harus berupa angka.',
+            'tgl_transaksi.required' => 'Tanggal transaksi wajib diisi.',
+            'tgl_transaksi.date' => 'Tanggal transaksi harus berupa tanggal yang valid.',
+            'jenis_zakat.required' => 'Jenis zakat wajib diisi.',
+            'jenis_zakat.string' => 'Jenis zakat harus berupa teks.',
+            'jumlah.required' => 'Jumlah wajib diisi.',
+            'jumlah.integer' => 'Jumlah harus berupa angka.',
+            'bukti.required' => 'Bukti wajib diunggah.',
+            'bukti.image' => 'Bukti harus berupa file gambar.',
+            'bukti.mimes' => 'Bukti harus memiliki format jpeg, png, jpg, atau gif.',
+            'bukti.max' => 'Ukuran bukti tidak boleh lebih dari 2MB.',
         ];
     }
 }
