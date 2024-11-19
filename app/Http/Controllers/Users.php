@@ -55,6 +55,7 @@ class Users extends Controller
     if (User::where('username', $request->username)->exists()) {
         return redirect()->back()->with('error', 'Username sudah ada, gunakan');
     }
+
     
 
     $request->validate([
@@ -62,7 +63,8 @@ class Users extends Controller
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users,username',
         'password' => 'required|min:8|confirmed',
-    ]);
+        ]);
+    
 
     User::create([
         'nik' => $request->nik,
