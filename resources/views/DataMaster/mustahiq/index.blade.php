@@ -1,6 +1,6 @@
 <x-layout>
- <div class="p-4">
-        <h1 class="uppercase text-xl">master data muzakki</h1>
+    <div class="p-4">
+    <h1 class="uppercase text-xl">master data mustahiq</h1>
 
         <div class="flex items-center justify-between mt-4 ">
         <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
@@ -51,28 +51,34 @@
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">No</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nik</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nama lengkap</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">alamat</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">no telp</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">email</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">username</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">password</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($muzakki as $index =>$pemberi)
+                    @foreach ($users as $index =>$user)
                     <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $pemberi->firstItem() + $index }} </td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->nik}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->name}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $users->firstItem() + $index }} </td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->nik}}</td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->name}}</td>
+                        @if ($user->email != null)
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ strlen($user->email) > 7 ? substr($user->email, 0, 7) . '...' : $user->email }}</td>
+                        @else
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">belum terdaftar</td>
+                        @endif
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$user->username}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
-                        {{ strlen($pemberi->password) > 7 ? substr($pemberi->password, 0, 7) . '...' : $pemberi->password }}
+                        {{ strlen($user->password) > 7 ? substr($user->password, 0, 7) . '...' : $user->password }}
                         </td>   
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                             <!-- button edit -->
-                            <a href="{{ route('muzakki.edit', $pemberi->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
+                            <a href="{{ route('users.edit', $user->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
                                 <ion-icon name="create-outline"></ion-icon>
                             </a>
                             <!-- a delete -->
-                            <form action="{{ route('muzakki.destroy', $pemberi->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
     @csrf
     @method('DELETE')
     <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
@@ -86,7 +92,8 @@
                 </tbody>
             </table>
         </div>
-        {{ $muzakki->links() }}
+        {{ $users->links() }}
         <!-- end table -->
     </div>   
+    </div>
 </x-layout>
