@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mustahiq;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreMustahiqRequest;
 use App\Http\Requests\UpdateMustahiqRequest;
 
@@ -11,10 +12,11 @@ class MustahiqController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mustahiq = Mustahiq::all();
-        return view('mustahiq.index', compact('mustahiq'));
+        $perPage = $request->get('per_page', 10); // Default ke 10 jika tidak ada parameter
+        $mustahiq = Mustahiq::paginate($perPage); //->withQueryString()
+        return view('DataMaster.mustahiq.index', compact('mustahiq'));
     }
 
     /**
@@ -22,7 +24,7 @@ class MustahiqController extends Controller
      */
     public function create()
     {
-        return view('mustahiq.create' );
+        return view('DataMaster.mustahiq.create' );
     }
 
     /**
@@ -53,7 +55,7 @@ class MustahiqController extends Controller
      */
     public function edit(Mustahiq $mustahiq)
     {
-        return view('mustahiq.edit', compact('mustahiq'));
+        return view('DataMaster.mustahiq.update', compact('mustahiq'));
     }
 
     /**

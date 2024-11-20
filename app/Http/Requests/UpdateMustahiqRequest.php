@@ -23,8 +23,8 @@ class UpdateMustahiqRequest extends FormRequest
     {
         return [
             'kode_jenis' => 'required|string|max:255',
-        'nik' => 'required|numeric|unique:mustahiq,nik,' . $this->id,
-        'nama_jenis' =>'required|string|max:255',
+            'nik' => 'required|numeric|unique:mustahiq,nik,' .  $this->route('mustahiq')->id,
+            'nama_jenis' =>'required|string|max:255',
         ];
     }
 }
