@@ -42,7 +42,7 @@ export default {
         [forms],
 
     ],
-    plugins: [forms],
+    
 };
  
 

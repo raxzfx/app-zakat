@@ -53,7 +53,7 @@ class Users extends Controller
     }
 
     if (User::where('username', $request->username)->exists()) {
-        return redirect()->back()->with('error', 'Username sudah ada, gunakan');
+        return redirect()->back()->with('error', 'Username sudah ada, gunakan yang lain');
     }
 
     
