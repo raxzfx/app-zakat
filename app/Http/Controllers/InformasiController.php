@@ -13,7 +13,8 @@ class InformasiController extends Controller
      */
     public function index()
     {
-        //
+        $informasi = Informasi::all();
+        return view('informasi.index', compact('informasi'));
     }
 
     /**
@@ -21,7 +22,7 @@ class InformasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('informasi.create' );
     }
 
     /**
@@ -29,7 +30,13 @@ class InformasiController extends Controller
      */
     public function store(StoreInformasiRequest $request)
     {
-        //
+        $request->validate([
+            'judul' =>'required|string|max:255',
+            'content' =>'required|string|max:255',
+            'img' =>'required|string|max:255',
+            'status' =>'required|numeric|',
+            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
+        ]);
     }
 
     /**
@@ -37,7 +44,8 @@ class InformasiController extends Controller
      */
     public function show(Informasi $informasi)
     {
-        //
+        $informasi = Informasi::findOrFail($informasi->kode_jenis);
+        return view('$informasi.show', compact('$informasi'));
     }
 
     /**
@@ -45,7 +53,7 @@ class InformasiController extends Controller
      */
     public function edit(Informasi $informasi)
     {
-        //
+        return view('informasi.edit', compact('informasi'));
     }
 
     /**
@@ -53,7 +61,23 @@ class InformasiController extends Controller
      */
     public function update(UpdateInformasiRequest $request, Informasi $informasi)
     {
-        //
+        $request->validate([
+            'judul' =>'required|string|max:255',
+            'content' =>'required|string|max:255',
+            'img' =>'required|string|max:255',
+            'status' =>'required|numeric|',
+            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
+            ]);
+    
+            $informasi->update([
+            'judul' =>'required|string|max:255',
+            'content' =>'required|string|max:255',
+            'img' =>'required|string|max:255',
+            'status' =>'required|numeric|',
+            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
+            ]);
+    
+            return redirect()->route('informasi.index')->with('success', 'Informasi updated successfully.');
     }
 
     /**
@@ -61,6 +85,8 @@ class InformasiController extends Controller
      */
     public function destroy(Informasi $informasi)
     {
-        //
+        
+        $informasi->delete();
+        return redirect()->route('Informasi.index')->with('success', 'Informasi deleted successfully.');
     }
 }
