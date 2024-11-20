@@ -22,6 +22,11 @@ Route::get('/DataMaster/users/formAdd',
 Route::get('/DataMaster/users/formEdit',function(){
     return view('DataMaster.Users.formEdit');
 });
+//penerimaan
+Route::get('/Transaksi/penerimaan/create',function(){
+    return view('Transaksi.penerimaan.create');
+});
+
 
 Route::post('/DataMaster/users/formAdd',
     [Users::class, 'store']
@@ -42,6 +47,8 @@ Route::delete('/DataMaster/users/{id}',
 Route::get('/users', [Users::class, 'index'])->name('users.index');
 
 Route::get('/DataMaster/muzakki', [MuzakkiController::class, 'index'])->name('muzakki.index');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
