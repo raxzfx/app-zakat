@@ -27,7 +27,7 @@ class MuzakkiController extends Controller
      */
     public function create()
     {
-        return view('muzakki.create');
+        return view('DataMaster.muzakki.create');
     }
 
     /**

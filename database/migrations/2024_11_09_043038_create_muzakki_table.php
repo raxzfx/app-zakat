@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('muzakki', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik')->unique();
+            $table->bigInteger('nik')->unique();
             $table->string('nama_lengkap');
             $table->text('alamat');
             $table->string('no_telp');

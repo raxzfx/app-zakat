@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('muzakki.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     muzakki
                 </a>
             </li>

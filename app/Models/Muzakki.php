@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Muzakki extends Model
 {
-    protected $table = 'muzakki';
+    protected $table = 'muzakki';  // Gunakan nama tabel yang sesuai
 
     protected $fillable = [
         'nik',

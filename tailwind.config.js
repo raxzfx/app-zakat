@@ -1,3 +1,4 @@
+
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
@@ -11,11 +12,16 @@ export default {
         './resources/**/*.vue',
         './node_modules/flyonui/dist/js/*.js',
         './node_modules/flatpickr/**/*.js', 
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
     ],
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+
             },
             colors: {
                 'rasya' : '#f7eedd',
@@ -32,11 +38,13 @@ export default {
     
     plugins: [
         require('flyonui'), 
-        require('flyonui/plugin')
+        require('flyonui/plugin'),
+        [forms],
+
     ],
     plugins: [forms],
 };
  
-import defaultTheme from 'tailwindcss/defaultTheme';
+
 
 
