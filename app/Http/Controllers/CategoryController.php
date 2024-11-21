@@ -10,9 +10,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
+        $categories = Category::paginate($perPage); // 15 adalah jumlah item per halaman
+        return view('informasi.kategori.index', compact('categories'));
     }
 
     /**
@@ -20,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('informasi.kategori.create');
     }
 
     /**
@@ -28,7 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required|string|max:255',
+        ]);
+
+      Category::create([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
@@ -36,7 +46,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $Category = Category::findOrFail($category->id);
+        return view('informasi.kategori.show', compact('Category'));
     }
 
     /**
@@ -44,7 +55,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+      
+        return view('informasi.kategori.update', compact('category'));
     }
 
     /**
@@ -52,7 +64,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required|string|max:255',
+        ]);
+
+        $category->update([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
     /**
@@ -60,6 +80,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

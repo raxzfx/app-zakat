@@ -6,6 +6,9 @@ use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MustahiqController;
 use App\Http\Controllers\JenisPenerimaanController;
+use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 Route::get('/', function () {
     return view('index');
@@ -29,6 +32,14 @@ Route::prefix('datamaster')->group(function () {
 
     Route::resource('/jenis-penerimaan', JenisPenerimaanController::class);
 });
+//informasi
+Route::prefix('informasi')->group(function () {
+    Route::resource('/informasi', InformasiController::class);  // Rute untuk Informasi
+    Route::resource('/kategori', CategoryController::class);    // Rute untuk Kategori
+});
+
+
+
 
 
 Route::get('/DataMaster/users/formAdd',

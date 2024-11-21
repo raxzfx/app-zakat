@@ -13,8 +13,8 @@ class InformasiController extends Controller
      */
     public function index()
     {
-        $informasi = Informasi::all();
-        return view('informasi.index', compact('informasi'));
+        $informasi = Informasi::paginate();
+        return view('informasi.informasi.index', compact('informasi'));
     }
 
     /**
@@ -22,7 +22,7 @@ class InformasiController extends Controller
      */
     public function create()
     {
-        return view('informasi.create' );
+        return view('informasi.informasi.create' );
     }
 
     /**
@@ -53,7 +53,7 @@ class InformasiController extends Controller
      */
     public function edit(Informasi $informasi)
     {
-        return view('informasi.edit', compact('informasi'));
+        return view('informasi.informasi.edit', compact('informasi'));
     }
 
     /**
