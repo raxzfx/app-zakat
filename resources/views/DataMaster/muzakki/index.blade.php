@@ -74,13 +74,13 @@
                     @foreach ($muzakki as $index => $pemberi)
                         <tr>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
-                                {{ $pemberi->firstItem() + $index }} </td>
+                                {{ $muzakki->firstItem() + $index }} </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $pemberi->nik }}</td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $pemberi->name }}</td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $pemberi->username }}
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $pemberi->nama_lengkap }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $pemberi->alamat }}
                             </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
-                                {{ strlen($pemberi->password) > 7 ? substr($pemberi->password, 0, 7) . '...' : $pemberi->password }}
+                                {{ $pemberi->no_telp }}
                             </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 <!-- button edit -->

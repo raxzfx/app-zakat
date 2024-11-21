@@ -3,7 +3,7 @@
     <div class="bg-base-100 w-full rounded-lg shadow capitalize">
       <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
       <div class="w-full p-4">
-        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('users.update', $user->id) }}" method="POST">
+        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('muzakki.update', $muzakki->id) }}" method="POST">
         @csrf
         @method('PUT')
           <!-- Account Details -->
@@ -18,6 +18,17 @@
     </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 
           <!-- First Name and Last Name -->
           <div class="w-full">
@@ -25,7 +36,7 @@
               <div class="label">
                 <span class="label-text">NIK</span>
               </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="name" value="{{ old('name', $user->name) }}" />
+              <input type="text" placeholder="masukan nik " class="input" required name="nik" value="{{ old('nik', $muzakki->nik) }}" />
               <span class="error-message">masukan nama lengkap anda</span>
               <span class="success-message">Looks good!</span>
             </label>
@@ -35,8 +46,8 @@
               <div class="label">
                 <span class="label-text">nama lengkap</span>
               </div>
-              <input type="text" placeholder="NIK" class="input" required name="nik" value="{{ old('nik', $user->nik) }}" />
-              <span class="error-message">masukan nik anda dengan benar</span>
+              <input type="text" placeholder="nama lengkap" class="input" required name="nama_lengkap" value="{{ old('nama_lengkap', $muzakki->nama_lengkap) }}" />
+              <span class="error-message">masukan nama lengkap anda dengan benar</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
@@ -47,7 +58,7 @@
               <div class="label">
                 <span class="label-text">alamat</span>
               </div>
-              <input type="text" class="input" placeholder="username" aria-label="john@gmail.com" required name="username" value="{{ old('username', $user->username) }}"/>
+              <input type="text" class="input" placeholder="alamat" aria-label="john@gmail.com" required name="alamat" value="{{ old('alamat', $muzakki->alamat) }}"/>
               <span class="error-message">Please enter a valid email</span>
               <span class="success-message">Looks good!</span>
             </label>
@@ -59,13 +70,7 @@
                 <span class="label-text">no telp</span>
               </div>
               <div class="input-group">
-                <input id="password" type="password" class="input" placeholder="Leave empty to keep the current password"  name="password"  />
-                <span class="input-group-text">
-                  <button type="button" data-toggle-password='{ "target": "#password" }' class="block">
-                    <span class="icon-[tabler--eye] text-base-content/80 password-active:block hidden size-4 flex-shrink-0"></span>
-                    <span class="icon-[tabler--eye-off] text-base-content/80 password-active:hidden block size-4 flex-shrink-0"></span>
-                  </button>
-                </span>
+                <input id="no_telp" type="text" class="input" placeholder="no telp"  name="no_telp" value="{{ old('no_telp', $muzakki->no_telp) }}"  />
               </div>
               <span class="error-message">Please enter a valid password</span>
               <span class="success-message">Looks good!</span>

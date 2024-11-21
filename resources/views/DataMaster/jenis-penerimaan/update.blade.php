@@ -3,7 +3,7 @@
     <div class="bg-base-100 w-full rounded-lg shadow capitalize">
       <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
       <div class="w-full p-4">
-        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('users.update', $user->id) }}" method="POST">
+        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('jenis-penerimaan.update', $jenisPenerimaan->kode_jenis) }}" method="POST">
         @csrf
         @method('PUT')
           <!-- Account Details -->
@@ -25,7 +25,18 @@
               <div class="label">
                 <span class="label-text">nama jenis</span>
               </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="name" value="{{ old('name', $user->name) }}" />
+              <input type="text" placeholder="masukan nama lengkap" class="input" required name="kode_jenis" value="{{ old('kode_jenis', $jenisPenerimaan->kode_jenis) }}" readonly/>
+              <span class="error-message">masukan nama lengkap anda</span>
+              <span class="success-message">Looks good!</span>
+            </label>
+          </div>
+         
+          <div class="w-full">
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text">nama jenis</span>
+              </div>
+              <input type="text" placeholder="masukan nama lengkap" class="input" required name="deskripsi" value="{{ old('deskripsi', $jenisPenerimaan->deskripsi) }}" />
               <span class="error-message">masukan nama lengkap anda</span>
               <span class="success-message">Looks good!</span>
             </label>

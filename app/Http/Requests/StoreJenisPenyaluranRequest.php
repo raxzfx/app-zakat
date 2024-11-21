@@ -11,7 +11,7 @@ class StoreJenisPenyaluranRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class StoreJenisPenyaluranRequest extends FormRequest
     {
         return [
             'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
-            'jenis_Pengeluaran' =>'required|string|max:255',
+            'jenis_pengeluaran' =>'required|string|max:255',
             'deskripsi' =>'required|string|max:255',
         ];
     }

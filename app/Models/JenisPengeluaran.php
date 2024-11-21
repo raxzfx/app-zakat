@@ -8,6 +8,8 @@ class JenisPengeluaran extends Model
 {
     protected $table = 'jenis_pengeluaran';
 
+    protected $primaryKey = 'kode_jenis';
+    public $timestamps = true; // Default: aktif
     protected $fillable = [
         'kode_jenis',
         'jenis_pengeluaran',

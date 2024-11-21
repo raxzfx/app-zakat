@@ -11,7 +11,7 @@ class UpdateMuzakkiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,10 @@ class UpdateMuzakkiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => 'required|numeric|unique:muzakkis,nik,' . $this->id,
+            'nik' => 'required|numeric|unique:muzakki,nik,' . $this->id,
             'nama_lengkap' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'no_telp' => 'required|numeric|min:10',
         ];
     }
 }

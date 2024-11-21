@@ -18,6 +18,16 @@
                         </div>
                     @endif
 
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
 
                     <!-- First Name and Last Name -->
                     <div class="w-full">
@@ -25,8 +35,7 @@
                             <div class="label">
                                 <span class="label-text">NIK</span>
                             </div>
-                            <input type="text" placeholder="masukan nik" class="input" required
-                                name="nik" />
+                            <input type="text" placeholder="masukan nik" class="input" required name="nik" />
                             <span class="error-message">masukan nama lengkap anda</span>
                             <span class="success-message">Looks good!</span>
                         </label>
@@ -36,8 +45,9 @@
                             <div class="label">
                                 <span class="label-text">nama lengkap</span>
                             </div>
-                            <input type="text" placeholder="masukan nama lengkap" class="input" required name="name_lengkap" />
-                            <span class="error-message">masukan nik anda dengan benar</span>
+                            <input type="text" placeholder="masukan nama lengkap" class="input" required
+                                name="nama_lengkap" />
+                            <span class="error-message">masukan nama anda dengan benar</span>
                             <span class="success-message">Looks good!</span>
                         </label>
                     </div>
@@ -48,8 +58,8 @@
                             <div class="label">
                                 <span class="label-text">alamat</span>
                             </div>
-                            <input type="text" class="input" placeholder="alamat" aria-label="alamat"
-                                required name="alamat" />
+                            <input type="text" class="input" placeholder="alamat" aria-label="alamat" required
+                                name="alamat" />
                             <span class="error-message">Please enter a valid email</span>
                             <span class="success-message">Looks good!</span>
                         </label>

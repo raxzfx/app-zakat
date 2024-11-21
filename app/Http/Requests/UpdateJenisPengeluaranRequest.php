@@ -11,7 +11,7 @@ class UpdateJenisPengeluaranRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,11 +22,8 @@ class UpdateJenisPengeluaranRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_pengeluaran' => 'required|string|max:255',
-            'alamat_penerima' =>  'required|string',
-            'jumlah' => 'required|integer',
-            'jenis_zakat' => 'required|string|exists:jenis_pengeluaran,kode_jenis',
-            'tgl_transaksi' => 'required|date',
+            'jenis_pengeluaran' =>'required|string|max:255',
+            'deskripsi' =>'required|string|max:255',
         ];
     }
 }

@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\JenisPengeluaran;
 use App\Http\Requests\StoreJenisPengeluaranRequest;
 use App\Http\Requests\UpdateJenisPengeluaranRequest;
+use Illuminate\Http\Request;
 
 class JenisPengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $jenisPengeluaran = JenisPengeluaran::all();
-        return view('jenisPengeluaran.index', compact('jenisPengeluaran'));
+    public function index(Request $request)
+    {   
+        $per_page = $request->get('per_page', 10);
+        $jenisPengeluaran = JenisPengeluaran::paginate($per_page);
+        return view('DataMaster.jenis-pengeluaran.index', compact('jenisPengeluaran'));
     }
 
     /**
@@ -22,7 +24,7 @@ class JenisPengeluaranController extends Controller
      */
     public function create()
     {
-        return view('jenisPengeluaran.create' );
+        return view('DataMaster.jenis-pengeluaran.create' );
     }
 
     /**
@@ -30,11 +32,14 @@ class JenisPengeluaranController extends Controller
      */
     public function store(StoreJenisPengeluaranRequest $request)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_pengeluaran,kode_jenis',
-            'jenis_pengeluaran' => 'required|string|max:255',
-            'deskripsi' =>'required|string|max:255',
+
+        JenisPengeluaran::create([
+            'kode_jenis' => $request->kode_jenis,
+            'jenis_pengeluaran' => $request->jenis_pengeluaran,
+            'deskripsi' => $request->deskripsi,
         ]);
+
+        return redirect()->route('jenis-pengeluaran.index')->with('success', 'Jenis Pengeluaran created successfully.');
     }
 
     /**
@@ -51,7 +56,7 @@ class JenisPengeluaranController extends Controller
      */
     public function edit(JenisPengeluaran $jenisPengeluaran)
     {
-        return view('jenisPengeluaran.edit', compact('jenisPengeluaran'));
+        return view('DataMaster.jenis-pengeluaran.update', compact('jenisPengeluaran'));
     }
 
     /**
@@ -59,19 +64,13 @@ class JenisPengeluaranController extends Controller
      */
     public function update(UpdateJenisPengeluaranRequest $request, JenisPengeluaran $jenisPengeluaran)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_pengeluaran,kode_jenis',
-            'jenis_pengeluaran' =>'required|string|max:255',
-            'deskripsi' =>'required|string|max:255',
-            ]);
     
             $jenisPengeluaran->update([
-                'kode_jenis' => $request->kode_jenis,
                 'jenis_pengeluaran' => $request->jenis_pengeluaran,
                 'deskripsi' => $request->deskripsi,
             ]);
     
-            return redirect()->route('jenisPengeluaran.index')->with('success', 'Jenis Pengeluaran updated successfully.');
+            return redirect()->route('jenis-pengeluaran.index')->with('success', 'Jenis Pengeluaran updated successfully.');
     }
 
     /**
@@ -80,6 +79,6 @@ class JenisPengeluaranController extends Controller
     public function destroy(JenisPengeluaran $jenisPengeluaran)
     {
         $jenisPengeluaran->delete();
-        return redirect()->route('jenisPengeluaran.index')->with('success', 'Jenis Pengeluaran deleted successfully.');
+        return redirect()->route('jenis-pengeluaran.index')->with('success', 'Jenis Pengeluaran deleted successfully.');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\JenisPenerimaan;
 use App\Http\Requests\StoreJenisPenerimaanRequest;
 use App\Http\Requests\UpdateJenisPenerimaanRequest;
@@ -11,10 +12,14 @@ class JenisPenerimaanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jenisPenerimaan = JenisPenerimaan::all();
-        return view('jenisPenerimaan.index', compact('jenisPenerimaan'));
+        $per_page = $request->get('per_page', 10);
+        $jenisPenerimaan = JenisPenerimaan::paginate($per_page);
+        return view('DataMaster.jenis-penerimaan.index', compact('jenisPenerimaan'));
+
+        
+
     }
 
     /**
@@ -22,7 +27,7 @@ class JenisPenerimaanController extends Controller
      */
     public function create()
     {
-        return view('jenisPeneriamaan.create' );
+        return view('DataMaster.jenis-penerimaan.create' );
     }
 
     /**
@@ -30,10 +35,12 @@ class JenisPenerimaanController extends Controller
      */
     public function store(StoreJenisPenerimaanRequest $request)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_penerimaan,kode_jenis',
-            'deskripsi' =>'required|string|max:255',
+        JenisPenerimaan::create([
+            'kode_jenis' => $request->kode_jenis,
+            'deskripsi' => $request->deskripsi
         ]);
+
+        return redirect()->route('jenis-penerimaan.index')->with('success', 'Jenis Penerimaan created successfully.');
     }
 
     /**
@@ -50,7 +57,7 @@ class JenisPenerimaanController extends Controller
      */
     public function edit(JenisPenerimaan $jenisPenerimaan)
     {
-        return view('jenisPenerimaan.edit', compact('jenisPenerimaan'));
+        return view('DataMaster.jenis-penerimaan.update', compact('jenisPenerimaan'));
     }
 
     /**
@@ -58,17 +65,13 @@ class JenisPenerimaanController extends Controller
      */
     public function update(UpdateJenisPenerimaanRequest $request, JenisPenerimaan $jenisPenerimaan)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_penerimaan,kode_jenis',
-            'deskripsi' =>'required|string|max:255',
-            ]);
     
             $jenisPenerimaan->update([
                 'kode_jenis' => $request->kode_jenis,
                 'deskripsi' => $request->deskripsi,
             ]);
     
-            return redirect()->route('jenisPenerimaan.index')->with('success', 'Jenis Penerimaan updated successfully.');
+            return redirect()->route('jenis-penerimaan.index')->with('success', 'Jenis Penerimaan updated successfully.');
     }
 
     /**
@@ -77,6 +80,6 @@ class JenisPenerimaanController extends Controller
     public function destroy(JenisPenerimaan $jenisPenerimaan)
     {
         $jenisPenerimaan->delete();
-        return redirect()->route('jenisPenerimaan.index')->with('success', 'Jenis Penerimaan deleted successfully.');
+        return redirect()->route('jenis-penerimaan.index')->with('success', 'Jenis Penerimaan deleted successfully.');
     }
 }
