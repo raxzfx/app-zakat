@@ -22,7 +22,7 @@ class StoreMuzakkiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => 'required|numeric|unique:muzakkis,nik',
+            'nik' => 'required|numeric|unique:muzakki,nik',
             'nama_lengkap' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'no_telp' => 'required|string|max:255',

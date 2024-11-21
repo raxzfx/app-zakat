@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\JenisPenyaluran;
 use App\Http\Requests\StoreJenisPenyaluranRequest;
 use App\Http\Requests\UpdateJenisPenyaluranRequest;
+use Illuminate\Http\Request;
 
 class JenisPenyaluranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jenisPenyaluran = JenisPenyaluran::all();
-        return view('jenisPenyaluran.index', compact('jenisPenyaluran'));
+        $per_page = $request->get('per_page', 10);
+        $jenisPenyaluran = JenisPenyaluran::paginate($per_page);
+        return view('DataMaster.jenis-penyaluran.index', compact('jenisPenyaluran'));
     }
 
     /**
@@ -22,7 +24,7 @@ class JenisPenyaluranController extends Controller
      */
     public function create()
     {
-        return view('jenisPenyaluran.create' );
+        return view('DataMaster.jenis-penyaluran.create' );
     }
 
     /**
@@ -30,11 +32,13 @@ class JenisPenyaluranController extends Controller
      */
     public function store(StoreJenisPenyaluranRequest $request)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
-            'jenis_Pengeluaran' => 'required|string|max:255',
-            'deskripsi' =>'required|string|max:255',
-        ]);
+         // Gunakan data yang sudah divalidasi
+        $validatedData = $request->validated();
+
+        // Simpan data ke database
+        JenisPenyaluran::create($validatedData);
+
+        return redirect()->route('jenis-penyaluran.index')->with('success', 'Jenis Penyaluran created successfully.');	
     }
 
     /**
@@ -51,7 +55,7 @@ class JenisPenyaluranController extends Controller
      */
     public function edit(JenisPenyaluran $jenisPenyaluran)
     {
-        return view('jenisPenyaluran.edit', compact('jenisPenyaluran'));
+        return view('DataMaster.jenis-penyaluran.update', compact('jenisPenyaluran'));
     }
 
     /**
@@ -59,19 +63,14 @@ class JenisPenyaluranController extends Controller
      */
     public function update(UpdateJenisPenyaluranRequest $request, JenisPenyaluran $jenisPenyaluran)
     {
-        $request->validate([
-            'kode_jenis' => 'required|numeric|unique:jenis_penyaluran,kode_jenis',
-            'jenis_Pengeluaran' =>'required|string|max:255',
-            'deskripsi' =>'required|string|max:255',
-            ]);
+        
     
             $jenisPenyaluran->update([
-                'kode_jenis' => $request->kode_jenis,
-                'jenis_Pengeluaran' => $request->jenis_Penyaluran,
+                'jenis_pengeluaran' => $request->jenis_pengeluaran,
                 'deskripsi' => $request->deskripsi,
             ]);
     
-            return redirect()->route('jenisPenyaluran.index')->with('success', 'Jenis Penyaluran updated successfully.');
+            return redirect()->route('jenis-penyaluran.index')->with('success', 'Jenis Penyaluran updated successfully.');
     }
 
     /**
@@ -80,6 +79,6 @@ class JenisPenyaluranController extends Controller
     public function destroy(JenisPenyaluran $jenisPenyaluran)
     {
         $jenisPenyaluran->delete();
-        return redirect()->route('jenisPenyaluran.index')->with('success', 'Jenis Penyaluran deleted successfully.');
+        return redirect()->route('jenis-penyaluran.index')->with('success', 'Jenis Penyaluran deleted successfully.');
     }
 }

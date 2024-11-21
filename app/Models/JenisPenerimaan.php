@@ -8,6 +8,17 @@ class JenisPenerimaan extends Model
 {
     protected $table = 'jenis_penerimaan';
 
+
+    // Nama primary key (jika bukan 'id')
+    protected $primaryKey = 'kode_jenis';
+
+    // Jika primary key bukan auto-increment
+    // public $incrementing = false;
+
+    // Jika primary key bukan integer
+    // protected $keyType = 'string';
+
+
     protected $fillable = [
         'kode_jenis',
         'deskripsi',

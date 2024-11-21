@@ -3,7 +3,7 @@
     <div class="bg-base-100 w-full rounded-lg shadow capitalize">
       <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
       <div class="w-full p-4">
-        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('users.store') }}" method="POST">
+        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('jenis-penyaluran.store') }}" method="POST">
         @csrf
           <!-- Account Details -->
           <div class="w-full">
@@ -17,25 +17,47 @@
     </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
           <!-- First Name and Last Name -->
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">deskripsi</span>
+                <span class="label-text">kode_jenis</span>
               </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="name" />
+              <input type="text" placeholder="masukan kode jenis" class="input" required name="kode_jenis" />
               <span class="error-message">masukan nama lengkap anda</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
+
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">jenis penyaluran</span>
+                <span class="label-text">deskripsi</span>
               </div>
-              <input type="text" placeholder="NIK" class="input" required name="nik" />
-              <span class="error-message">masukan nik anda dengan benar</span>
+              <input type="text" placeholder="masukan deskripsi" class="input" required name="deskripsi" />
+              <span class="error-message">masukan nama lengkap anda</span>
+              <span class="success-message">Looks good!</span>
+            </label>
+          </div>
+
+          <div class="w-full">
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text">jenis pengeluaran</span>
+              </div>
+              <input type="text" placeholder="jenis pengeluaran" class="input" required name="jenis_pengeluaran" />
+              <span class="error-message">masukan jenis penyaluran anda dengan benar</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
