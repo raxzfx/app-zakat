@@ -47,6 +47,12 @@ Route::prefix('informasi')->group(function () {
     Route::resource('/kategori', CategoryController::class);    // Rute untuk Kategori
 });
 
+//transaksi
+route::prefix('transaksi')->group(function () {
+    route::resource('/penerimaan', 'App\Http\Controllers\PenerimaanController');  
+    route::resource('/penyaluran', 'App\Http\Controllers\PenyaluranController');  
+});
+
 
 
 

@@ -1,7 +1,7 @@
 
-    <x-layout>
+<x-layout>
  <div class="p-4">
-        <h1 class="uppercase text-xl">transaksi penerimaan</h1>
+        <h1 class="uppercase text-xl">transaksi penyaluran</h1>
 
         <div class="flex items-center justify-between mt-4 ">
         <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
@@ -14,7 +14,7 @@
                                 <span class="mr-2">filter data</span>
                                 <ion-icon name="filter-outline"></ion-icon>
                             </button>
-        <a href="{{ route('penerimaan.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+        <a href="{{ route('users.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
                                 <span class="mr-2">add data</span>
                                 <ion-icon name="add-circle-outline"></ion-icon>
                             </a>
@@ -50,18 +50,16 @@
                 <thead>
                     <tr>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">No</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nama penerima</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jenis zakat</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nama muzakki</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">total</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">bukti</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tgl penerimaan</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tgl input</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tgl trans</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jumlah</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">alamat penerima</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tgl penyaluran</th>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($penerimaan as $index =>$nerima)
+                    @foreach ($muzakki as $index =>$pemberi)
                     <tr>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $pemberi->firstItem() + $index }} </td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->nik}}</td>
@@ -75,11 +73,11 @@
                         </td>   
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                             <!-- button edit -->
-                            <a href="{{ route('penerimaan.edit', $nerima->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
+                            <a href="{{ route('muzakki.edit', $pemberi->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
                                 <ion-icon name="create-outline"></ion-icon>
                             </a>
                             <!-- a delete -->
-                            <form action="{{ route('penerimaan.destroy', $nerima->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            <form action="{{ route('muzakki.destroy', $pemberi->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
     @csrf
     @method('DELETE')
     <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
@@ -93,7 +91,7 @@
                 </tbody>
             </table>
         </div>
-        {{ $penerimaan->links() }}
+        {{ $muzakki->links() }}
         <!-- end table -->
     </div>   
 </x-layout>

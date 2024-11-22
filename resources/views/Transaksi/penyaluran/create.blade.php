@@ -7,7 +7,7 @@
         @csrf
           <!-- Account Details -->
           <div class="w-full">
-            <h6 class="text-lg font-semibold">edit transaksi penerimaan</h6>
+            <h6 class="text-lg font-semibold">Add transaksi penyaluran</h6>
             <hr class="mb-4 mt-2" />
           </div>
           
@@ -40,7 +40,7 @@
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">nama muzakki</span>
+                <span class="label-text">nama penerima</span>
               </div>
               <input type="text" placeholder="nama muzakki" class="input" required name="nik" />
               <span class="error-message">masukan nik anda dengan benar</span>
@@ -52,7 +52,7 @@
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">total</span>
+                <span class="label-text">jumlah</span>
               </div>
               <input type="number" class="input" placeholder="total" aria-label="john@gmail.com" required name="username" />
               <span class="error-message">Please enter a valid email</span>
@@ -60,28 +60,23 @@
             </label>
           </div>
 
-          <div class="w-full mt-3">
-    <label class="form-control">
-        <div class="label">
-            <span class="label-text">Upload Gambar sebagai bukti</span>
-        </div>
-        <input 
-            type="file" 
-            class="input file-input" 
-            accept="image/*" 
-            required 
-            name="upload_gambar"
-        />
-        <span class="error-message">Silakan unggah gambar yang valid</span>
-        <span class="success-message">Looks good!</span>
-    </label>
-</div>
+          <div class="w-full">
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text">alamat penerima</span>
+              </div>
+              <input type="text" placeholder="nama muzakki" class="input" required name="nik" />
+              <span class="error-message">masukan nik anda dengan benar</span>
+              <span class="success-message">Looks good!</span>
+            </label>
+          </div>
+
 
 <!-- Date Picker -->
 <div class="w-full">
 <label class="form-control">
         <div class="label">
-            <span class="label-text">Tanggal penerimaan</span>
+            <span class="label-text">Tanggal penyaluran</span>
         </div>
         <input 
             type="date" 
@@ -93,42 +88,8 @@
         <span class="success-message">Looks good!</span>
     </label>
 </div>
-<!-- Date Picker -->
-<div class="w-full">
-<label class="form-control">
-        <div class="label">
-            <span class="label-text">Tanggal input</span>
-        </div>
-        <input 
-            type="date" 
-            class="input" 
-            required 
-            name="tanggal_lahir" 
-        />
-        <span class="error-message">Masukkan tanggal lahir Anda dengan benar</span>
-        <span class="success-message">Looks good!</span>
-    </label>
-</div>
-<!-- Date Picker -->
-<div class="w-full">
-<label class="form-control">
-        <div class="label">
-            <span class="label-text">Tanggal transaksi</span>
-        </div>
-        <input 
-            type="date" 
-            class="input" 
-            required 
-            name="tanggal_lahir" 
-        />
-        <span class="error-message">Masukkan tanggal lahir Anda dengan benar</span>
-        <span class="success-message">Looks good!</span>
-    </label>
-</div>
-
 
        
-
 
           <!-- Terms and Conditions -->
           <div class="w-full">
