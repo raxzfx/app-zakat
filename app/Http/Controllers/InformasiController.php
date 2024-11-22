@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use illuminate\Http\Request;
 use App\Models\Informasi;
 use App\Http\Requests\StoreInformasiRequest;
 use App\Http\Requests\UpdateInformasiRequest;
@@ -11,8 +12,9 @@ class InformasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->get('per_page', 10);
         $informasi = Informasi::paginate();
         return view('informasi.informasi.index', compact('informasi'));
     }
@@ -31,12 +33,12 @@ class InformasiController extends Controller
     public function store(StoreInformasiRequest $request)
     {
         $request->validate([
-            'judul' =>'required|string|max:255',
-            'content' =>'required|string|max:255',
-            'img' =>'required|string|max:255',
-            'status' =>'required|numeric|',
-            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
-        ]);
+            'judul' =>$request->judul,
+            'content' =>$request->content,
+            'img' =>$request->img,
+            'status' =>$request->status,
+            'kategori_id' =>$request->kategori_id,
+            ]);
     }
 
     /**
@@ -44,7 +46,7 @@ class InformasiController extends Controller
      */
     public function show(Informasi $informasi)
     {
-        $informasi = Informasi::findOrFail($informasi->kode_jenis);
+        $informasi = Informasi::findOrFail($informasi->id);
         return view('$informasi.show', compact('$informasi'));
     }
 
@@ -61,20 +63,12 @@ class InformasiController extends Controller
      */
     public function update(UpdateInformasiRequest $request, Informasi $informasi)
     {
-        $request->validate([
-            'judul' =>'required|string|max:255',
-            'content' =>'required|string|max:255',
-            'img' =>'required|string|max:255',
-            'status' =>'required|numeric|',
-            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
-            ]);
-    
             $informasi->update([
-            'judul' =>'required|string|max:255',
-            'content' =>'required|string|max:255',
-            'img' =>'required|string|max:255',
-            'status' =>'required|numeric|',
-            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
+            'judul' =>$request->judul,
+            'content' =>$request->content,
+            'img' =>$request->img,
+            'status' =>$request->status,
+            'kategori_id' =>$request->kategori_id,
             ]);
     
             return redirect()->route('informasi.index')->with('success', 'Informasi updated successfully.');
@@ -87,6 +81,6 @@ class InformasiController extends Controller
     {
         
         $informasi->delete();
-        return redirect()->route('Informasi.index')->with('success', 'Informasi deleted successfully.');
+        return redirect()->route('informasi.index')->with('success', 'Informasi deleted successfully.');
     }
 }

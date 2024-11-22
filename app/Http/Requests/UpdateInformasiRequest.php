@@ -11,7 +11,7 @@ class UpdateInformasiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class UpdateInformasiRequest extends FormRequest
             'content' =>'required|string|max:255',
             'img' =>'required|string|max:255',
             'status' =>'required|numeric|',
-            'kategori_id' => 'required|numeric|unique:informasi,kategori_id',
+            'kategori_id' => 'required|numeric|unique:informasi,kategori_id,' . $this->route('informasi')->id,
         ];
     }
 }
