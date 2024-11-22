@@ -1,18 +1,24 @@
 <?php
 
+use App\Models\Category;
 use App\Http\Controllers\Users;
+use App\Models\LaporanPenerimaan;
+use App\Models\LaporanPenyaluran;
+use App\Models\LaporanPengeluaran;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\MuzakkiController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MustahiqController;
-use App\Http\Controllers\JenisPenerimaanController;
-
-use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\CategoryController;
-use App\Models\Category;
 
+use App\Http\Controllers\MustahiqController;
+use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\JenisPenerimaanController;
 use App\Http\Controllers\JenisPenyaluranController;
 use App\Http\Controllers\JenisPengeluaranController;
+use App\Http\Controllers\TransaksiPenerimaanController;
+use App\Http\Controllers\TransaksiPenyaluranController;
+use App\Http\Controllers\TransaksiPengeluaranController;
 
 
 Route::get('/', function () {
@@ -43,8 +49,26 @@ Route::prefix('datamaster')->group(function () {
 });
 //informasi
 Route::prefix('informasi')->group(function () {
-    Route::resource('/informasi', InformasiController::class);  // Rute untuk Informasi
-    Route::resource('/kategori', CategoryController::class);    // Rute untuk Kategori
+    Route::resource('/informasi-informasi', InformasiController::class);  // Rute untuk Informasi
+    Route::resource('/informasi-kategori', CategoryController::class);    // Rute untuk Kategori
+});
+
+
+//transaksi
+Route::prefix('transaksi')->group(function () {
+
+    Route::resource('/transaksi-penerimaan', TransaksiPenerimaanController::class);
+    Route::resource('/transaksi-penyaluran', TransaksiPenyaluranController::class);
+    Route::resource('/transaksi-pengeluaran', TransaksiPengeluaranController::class);
+
+});
+
+Route::prefix('laporan')->group(function (){
+
+    Route::resource('/penerimaan', LaporanPenerimaan::class);
+    Route::resource('/pengeluaran', LaporanPengeluaran::class);
+    Route::resource('/penyaluran', LaporanPenyaluran::class);
+
 });
 
 //transaksi
@@ -55,12 +79,6 @@ route::prefix('transaksi')->group(function () {
 
 
 
-
-
-//penerimaan
-Route::get('/Transaksi/penerimaan/create',function(){
-    return view('Transaksi.penerimaan.create');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

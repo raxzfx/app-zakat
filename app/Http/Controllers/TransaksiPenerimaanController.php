@@ -6,16 +6,19 @@ use App\Models\TransaksiPenerimaan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTransaksiPenerimaanRequest;
 use App\Http\Requests\UpdateTransaksiPenerimaanRequest;
+use Illuminate\Http\Request;
 
 class TransaksiPenerimaanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $trans = TransaksiPenerimaan::with('muzakki', 'jenisPenerimaan')->get();
-        return view('transaksi-penerimaan.index', compact('trans'));
+    public function index(Request $request)
+    {   
+        $per_page = $request->get('per_page', 10);
+
+        $transaksi = TransaksiPenerimaan::with('muzakki', 'jenisPenerimaan')->paginate($per_page);
+        return view('transaksi.penerimaan.index', compact('transaksi'));
     }
 
     /**
@@ -23,7 +26,7 @@ class TransaksiPenerimaanController extends Controller
      */
     public function create()
     {
-        return view('transaksi-penerimaan.create');
+        return view('transaksi.penerimaan.create');
     }
 
     /**
@@ -46,6 +49,7 @@ class TransaksiPenerimaanController extends Controller
         // Simpan data ke dalam database
         TransaksiPenerimaan::create([
             'id_muzakki' => $request->id_muzakki,
+            'tgl_penerimaan' => $request->tgl_penerimaan,
             'jenis_zakat' => $request->jenis_zakat,
             'tgl_transaksi' => $request->tgl_transaksi,
             'jumlah' => $request->jumlah,

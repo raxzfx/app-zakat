@@ -20,6 +20,7 @@ class StoreTransaksiPenerimaanRequest extends FormRequest
     public function rules()
     {
         return [
+            'tgl_penerimaan' => 'required|date',
             'id_muzakki' => 'required|integer|exists:muzakkis,id',
             'jenis_zakat' => 'required|string|exists:jenis_zakat,kode_jenis',
             'tgl_transaksi' => 'required|date',

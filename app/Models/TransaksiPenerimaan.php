@@ -14,6 +14,7 @@ class TransaksiPenerimaan extends Model
         'jenis_zakat',
         'jumlah',
         'bukti',
+        'tgl_penerimaan'
     ];
 
     public function jenisPenerimaan()

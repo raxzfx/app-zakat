@@ -61,17 +61,17 @@
          <!-- sub menu -->
         <ul class="capitalize pl-8 mt-2 text-black hidden group-[.selected]:block">
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('transaksi-penerimaan.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     penerimaan
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="{{ route('jenis-penyaluran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('transaksi-penyaluran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     penyaluran
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="{{ route('jenis-pengeluaran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('transaksi-pengeluaran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     pengeluaran
                 </a>
             </li>
@@ -87,18 +87,13 @@
          <!-- sub menu -->
         <ul class="capitalize pl-8 mt-2 text-black hidden group-[.selected]:block">
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('informasi-kategori.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     kategori
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('informasi-informasi.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     informasi
-                </a>
-            </li>
-            <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
-                    FAQ
                 </a>
             </li>
             </ul>
@@ -113,17 +108,17 @@
             <!-- sub menu -->
             <ul class="capitalize pl-8 mt-2 text-black hidden group-[.selected]:block ">
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{route('penerimaan.index')}}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     penerimaan
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('penyaluran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     penyaluran
                 </a>
             </li>
             <li class="mb-3 ">
-                <a href="" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
+                <a href="{{ route('pengeluaran.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
                     pengeluaran
                 </a>
             </li>
