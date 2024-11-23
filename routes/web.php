@@ -53,7 +53,9 @@ route::prefix('transaksi')->group(function () {
     route::resource('/penyaluran', 'App\Http\Controllers\PenyaluranController');  
 });
 
-
+Route::get('/Laporan/pengeluaran/index',function(){
+     return view('Laporan.pengeluaran.index');
+});
 
 
 
