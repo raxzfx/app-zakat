@@ -22,14 +22,7 @@ Route::get('/', function () {
 //datamaster
 Route::prefix('datamaster')->group(function () {
 
-    Route::middleware('auth')->group(function () {
-        Route::get('/users', [Users::class, 'index'])->name('users.index');
-        Route::get('/users/formAdd',[Users::class, 'create'])->name('users.create');
-        Route::post('/users/formAdd',[Users::class, 'store'])->name('users.store');
-        Route::get('/users/{id}/formEdit',[Users::class, 'edit'])->name('users.edit');
-        Route::put('/users/{id}/formEdit',[Users::class, 'update'])->name('users.update');
-        Route::delete('/users/{id}', [Users::class, 'destroy'])->name('users.destroy');
-    });
+    route::resource('/users', Users::class);
 
     Route::resource('/muzakki', MuzakkiController::class);
 

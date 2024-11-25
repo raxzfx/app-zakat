@@ -19,18 +19,6 @@
 @endif
 
 
-          <!-- First Name and Last Name -->
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">nama jenis</span>
-              </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="kode_jenis" value="{{ old('kode_jenis', $jenisPenerimaan->kode_jenis) }}" readonly/>
-              <span class="error-message">masukan nama lengkap anda</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
-         
           <div class="w-full">
             <label class="form-control">
               <div class="label">

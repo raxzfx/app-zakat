@@ -14,8 +14,16 @@ class JenisPengeluaranController extends Controller
      */
     public function index(Request $request)
     {   
+        $query = $request->input('query');
         $per_page = $request->get('per_page', 10);
-        $jenisPengeluaran = JenisPengeluaran::paginate($per_page);
+
+        if ($query) {
+            $jenisPengeluaran = JenisPengeluaran::where('jenis_pengeluaran', 'like', '%' . $query . '%')
+                ->paginate($per_page);
+        } else {
+            $jenisPengeluaran = JenisPengeluaran::paginate($per_page);
+        }
+
         return view('DataMaster.jenis-pengeluaran.index', compact('jenisPengeluaran'));
     }
 

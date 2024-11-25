@@ -14,8 +14,15 @@ class JenisPenyaluranController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->input('query');
         $per_page = $request->get('per_page', 10);
-        $jenisPenyaluran = JenisPenyaluran::paginate($per_page);
+
+        if ($query) {
+            $jenisPenyaluran = JenisPenyaluran::where('jenis_pengeluaran', 'like', '%' . $query . '%')
+                ->paginate($per_page);
+        } else {
+            $jenisPenyaluran = JenisPenyaluran::paginate($per_page);
+        }
         return view('DataMaster.jenis-penyaluran.index', compact('jenisPenyaluran'));
     }
 

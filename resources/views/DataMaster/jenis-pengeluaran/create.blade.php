@@ -28,26 +28,15 @@
 @endif
 
 
+    
           <!-- First Name and Last Name -->
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">kode jenis</span>
+                <span class="label-text"> jenis pengeluaran</span>
               </div>
-              <input type="text" placeholder="masukan kode jenis" class="input" required name="kode_jenis" />
-              <span class="error-message">masukan kode jenis</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
-
-          <!-- First Name and Last Name -->
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">nama jenis pengeluaran</span>
-              </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="jenis_pengeluaran" />
-              <span class="error-message">masukan nama lengkap anda</span>
+              <input type="text" placeholder="input jenis pengeluaran" class="input" required name="jenis_pengeluaran" />
+              <span class="error-message">masukan jenis pengeluaran anda</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
@@ -57,8 +46,8 @@
               <div class="label">
                 <span class="label-text">deskripsi</span>
               </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required name="deskripsi" />
-              <span class="error-message">masukan nama lengkap anda</span>
+              <input type="text" placeholder="input deskripsi" class="input" required name="deskripsi" />
+              <span class="error-message">masukan deskripsi pengeluaran</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>

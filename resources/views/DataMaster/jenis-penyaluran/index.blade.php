@@ -33,13 +33,24 @@
 </div>
 
 
+<form action="{{ route('jenis-penyaluran.index') }}" method="GET" class="relative mt-1 flex items-center">
     <label for="table-search" class="sr-only">Search</label>
-    <div class="relative mt-1">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <ion-icon name="search-outline"></ion-icon>
-        </div>
-        <input type="text" id="table-search" class="block w-64 pl-10 p-2 border border-gray-200 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Search for items">
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <ion-icon name="search-outline"></ion-icon>
     </div>
+    <input 
+        type="text" 
+        id="table-search" 
+        name="query" 
+        class="block w-64 pl-10 p-2 border border-gray-200 rounded-l-md text-sm focus:ring-blue-500 focus:border-blue-500" 
+        placeholder="Search anyone" 
+        value="{{ request('query') }}"> <!-- Tetap menampilkan input query -->
+    <button 
+        type="submit" 
+        class="bg-blue-500 text-white py-2 px-3 rounded-r-md text-sm transition-all duration-150 ease-in-out hover:bg-blue-600">
+        Submit
+    </button>
+</form>
 </div>
 
 
@@ -49,8 +60,8 @@
         <thead>
             <tr>
                 <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">No</th>
+                <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider"> jenis penyaluran </th>
                 <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">deskripsi</th>
-                <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jenis pengeluaran </th>
                 <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">action</th>
             </tr>
         </thead>
@@ -58,9 +69,9 @@
             @foreach ($jenisPenyaluran as $index =>$penyaluran)
             <tr>
                 <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $jenisPenyaluran->firstItem() + $index }} </td>
-                <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$penyaluran->deskripsi}}</td>
+                <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">   {{ $penyaluran->jenis_pengeluaran }}</td>
                 <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
-                    {{ $penyaluran->jenis_pengeluaran }}
+                {{$penyaluran->deskripsi}} 
                 </td>   
                 <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                     <!-- button edit -->
