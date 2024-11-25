@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaporanPengeluaran extends Model
 {
-    public function laporanPengeluaran()
-    {
-        //
-    }
+    protected $table = 'transaksi_pengeluaran'; //diambil dari tabel transaksi_pengeluaran
+    
+    protected $fillable = [
+        'tanggal_pengeluaran',
+        'jenis_zakat',
+        'id_muzakki',
+        'jumlah',
+        'total'
+    ];
 }

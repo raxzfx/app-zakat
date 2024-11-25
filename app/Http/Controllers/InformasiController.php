@@ -32,7 +32,7 @@ class InformasiController extends Controller
      */
     public function store(StoreInformasiRequest $request)
     {
-        $request->validate([
+        Informasi::create([
             'judul' =>$request->judul,
             'content' =>$request->content,
             'img' =>$request->img,
