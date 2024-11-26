@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mustahiq;
+use Illuminate\Http\Request;
+use App\Models\JenisPenyaluran;
 use App\Models\TransaksiPenyaluran;
 use App\Http\Requests\StoreTransaksiPenyaluranRequest;
 use App\Http\Requests\UpdateTransaksiPenyaluranRequest;
@@ -11,10 +14,12 @@ class TransaksiPenyaluranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trasnPenyaluran = TransaksiPenyaluran::with('mustahiq' , 'jenisZakat')->get();
-        return view('transaksi-penyaluran.index', compact('trasnPenyaluran'));
+        $per_page = (int) $request->get('per_page', 10);
+        $per_page = $per_page > 0 ? $per_page : 10;
+        $trasnPenyaluran = TransaksiPenyaluran::with('mustahiq' , 'jenisZakat')->paginate($per_page);
+        return view('transaksi.penyaluran.index', compact('trasnPenyaluran' ));
     }
 
     /**
@@ -22,7 +27,9 @@ class TransaksiPenyaluranController extends Controller
      */
     public function create()
     {
-        return view('transaksi-penyaluran.create');
+        $mustahiq = Mustahiq::all();
+        $jenis_zakat = JenisPenyaluran::all();
+        return view('transaksi.penyaluran.create', compact('mustahiq', 'jenis_zakat'));
     }
 
     /**
@@ -57,7 +64,9 @@ class TransaksiPenyaluranController extends Controller
      */
     public function edit(TransaksiPenyaluran $transaksiPenyaluran)
     {
-        return view('transaksi-penyaluran.edit', compact('transaksiPenyaluran'));
+        $mustahiq = Mustahiq::all();
+        $jenis_zakat = JenisPenyaluran::all();
+        return view('transaksi.penyaluran.update', compact('transaksiPenyaluran' , 'mustahiq' , 'jenis_zakat'));
     }
 
     /**

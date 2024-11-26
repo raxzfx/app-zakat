@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTransaksiPenyaluranRequest extends FormRequest
+class UpdateLaporanPenyaluranRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class StoreTransaksiPenyaluranRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'jenis_zakat' => 'required|exists:jenis_penyaluran,kode_jenis',
-            'nama_penerima' => 'required|exists:muzakki,id',
-            'alamat_penerima' => 'required|string',
-            'jumlah' => 'required|integer',
-            'tgl_transaksi' => 'required|date',
+            //
         ];
     }
 }

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\JenisPenyaluran;
 use App\Models\TransaksiPengeluaran;
 use App\Http\Requests\StoreTransaksiPengeluaranRequest;
 use App\Http\Requests\UpdateTransaksiPengeluaranRequest;
+use App\Models\JenisPengeluaran;
 
 class TransaksiPengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $transPengeluaran = TransaksiPengeluaran::with( 'jenisPenyaluran')->get();
-        return view('transaksi-pengeluaran.index', compact('transPengeluaran'));
+        $per_page = $request->get('per_page', 10);
+        $transPengeluaran = TransaksiPengeluaran::with( 'jenisPengeluaran')->paginate($per_page);
+        return view('transaksi.pengeluaran.index', compact('transPengeluaran'));
     }
 
     /**
@@ -22,7 +26,8 @@ class TransaksiPengeluaranController extends Controller
      */
     public function create()
     {
-        return view('transaksi-pengeluaran.create');
+        $jenisPengeluaran = JenisPengeluaran::all();
+        return view('transaksi.pengeluaran.create' , compact('jenisPengeluaran'));
     }
 
     /**
@@ -48,7 +53,7 @@ class TransaksiPengeluaranController extends Controller
     public function show(TransaksiPengeluaran $transaksiPengeluaran)
 {
     // Ambil data transaksi pengeluaran beserta relasi jenisPenyaluran
-    $transPengeluaran = TransaksiPengeluaran::with('jenisPenyaluran')->findOrFail($transaksiPengeluaran->id);
+    $transPengeluaran = TransaksiPengeluaran::with('jenisPengeluaran')->findOrFail($transaksiPengeluaran->id);
     
     // Kembalikan ke view dengan membawa data transaksi pengeluaran
     return view('transaksi-pengeluaran.show', compact('transPengeluaran'));
@@ -58,9 +63,10 @@ class TransaksiPengeluaranController extends Controller
      */
     public function edit(TransaksiPengeluaran $transaksiPengeluaran)
     {
-            $transPengeluaran = TransaksiPengeluaran::with('jenisPenyaluran')->findOrFail($transaksiPengeluaran->id);
+        $jenisPengeluaran = JenisPengeluaran::all();
+        $transPengeluaran = TransaksiPengeluaran::with('jenisPengeluaran')->findOrFail($transaksiPengeluaran->id);
 
-        return view('transaksi-pengeluaran.edit', compact('transPengeluaran'));
+        return view('transaksi.pengeluaran.update', compact('transPengeluaran' , 'jenisPengeluaran'));
     }
 
     /**

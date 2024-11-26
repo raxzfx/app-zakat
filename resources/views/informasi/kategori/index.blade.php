@@ -13,7 +13,7 @@
                                 <span class="mr-2">filter data</span>
                                 <ion-icon name="filter-outline"></ion-icon>
                             </button>
-        <a href="{{ route('kategori.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+        <a href="{{ route('informasi-kategori.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
                                 <span class="mr-2">add data</span>
                                 <ion-icon name="add-circle-outline"></ion-icon>
                             </a>
@@ -62,11 +62,11 @@
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->created_at->format('Y-m-d')}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                             <!-- button edit -->
-                            <a href="{{ route('kategori.edit', $kate->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
+                            <a href="{{ route('informasi-kategori.edit', $kate->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
                                 <ion-icon name="create-outline"></ion-icon>
                             </a>
                             <!-- a delete -->
-                            <form action="{{ route('kategori.destroy', $kate->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            <form action="{{ route('informasi-kategori.destroy', $kate->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
     @csrf
     @method('DELETE')
     <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">

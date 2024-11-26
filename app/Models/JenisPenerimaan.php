@@ -12,6 +12,8 @@ class JenisPenerimaan extends Model
     // Nama primary key (jika bukan 'id')
     protected $primaryKey = 'kode_jenis';
 
+    public $timestamps = true;
+
     // Jika primary key bukan auto-increment
     // public $incrementing = false;
 
