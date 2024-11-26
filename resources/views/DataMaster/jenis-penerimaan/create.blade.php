@@ -27,22 +27,11 @@
     </div>
 @endif
 
-          <!-- First Name and Last Name -->
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">kode jenis</span>
-              </div>
-              <input type="text" placeholder="kode jenis" class="input" required name="kode_jenis" />
-              <span class="error-message">masukan nama lengkap anda</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
 
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">description</span>
+                <span class="label-text">nama jenis</span>
               </div>
               <input type="text" placeholder="masukan nama lengkap" class="input" required name="deskripsi" />
               <span class="error-message">masukan nama lengkap anda</span>

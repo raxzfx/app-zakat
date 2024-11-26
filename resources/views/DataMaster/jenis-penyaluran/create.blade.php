@@ -29,13 +29,15 @@
 
 
           <!-- First Name and Last Name -->
+       
+
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">kode_jenis</span>
+                <span class="label-text">jenis penyaluran</span>
               </div>
-              <input type="text" placeholder="masukan kode jenis" class="input" required name="kode_jenis" />
-              <span class="error-message">masukan nama lengkap anda</span>
+              <input type="text" placeholder="jenis pengeluaran" class="input" required name="jenis_pengeluaran" />
+              <span class="error-message">masukan jenis penyaluran anda dengan benar</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
@@ -51,16 +53,7 @@
             </label>
           </div>
 
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">jenis pengeluaran</span>
-              </div>
-              <input type="text" placeholder="jenis pengeluaran" class="input" required name="jenis_pengeluaran" />
-              <span class="error-message">masukan jenis penyaluran anda dengan benar</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
+       
 
 
           <!-- Terms and Conditions -->

@@ -41,15 +41,25 @@
             </div>
 
 
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative mt-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <ion-icon name="search-outline"></ion-icon>
-                </div>
-                <input type="text" id="table-search"
-                    class="block w-64 pl-10 p-2 border border-gray-200 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search for items">
-            </div>
+            <form action="{{ route('mustahiq.index') }}" method="GET" class="relative mt-1 flex items-center">
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <input 
+        type="text" 
+        id="table-search" 
+        name="query" 
+        class="block w-64 pl-10 p-2 border border-gray-200 rounded-l-md text-sm focus:ring-blue-500 focus:border-blue-500" 
+        placeholder="Search anyone" 
+        value="{{ request('query') }}"> <!-- Tetap menampilkan input query -->
+    <button 
+        type="submit" 
+        class="bg-blue-500 text-white py-2 px-3 rounded-r-md text-sm transition-all duration-150 ease-in-out hover:bg-blue-600">
+        Submit
+    </button>
+</form>
+
         </div>
 
 

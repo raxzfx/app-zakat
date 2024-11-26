@@ -17,8 +17,14 @@ class MuzakkiController extends Controller
         
 
           // Menggunakan Eloquent dengan pagination
+          $query = $request->input('query');
           $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
-        $muzakki = Muzakki::paginate($perPage);
+          if($query){
+            $muzakki = Muzakki::where('nama_lengkap', 'like', '%' . $query . '%')->paginate($perPage);
+          }else{
+            $muzakki = Muzakki::paginate($perPage);
+          }
+    
         return view('DataMaster.muzakki.index', compact('muzakki'));
     }
 

@@ -49,11 +49,14 @@
                 <thead>
                     <tr>
                         <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">No</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tanggal penerimaan</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">nama muzakki</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jenis zakat</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jumlah penerimaan</th>
-                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">keterangan</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">tanggal pengeluaran</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jenis</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">jumlah pengeluaran</th>
+
+                    </tr>
+                    <tr>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">total</th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,8 +66,6 @@
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->nama_kategori}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->created_at->format('Y-m-d')}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $categories->firstItem() + $index }} </td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->nama_kategori}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->created_at->format('Y-m-d')}}</td>
                     </tr>
                     @endforeach
                 </tbody>

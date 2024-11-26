@@ -5,14 +5,14 @@
      </div>
      <ul class="pt-6 text-black text-sm capitalize">
         <li class="mb-1 group active">
-         <a href="" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white  group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+         <a href="" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white  group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
             <ion-icon name="home-outline" class="mr-2"></ion-icon>
             <span>dashboard</span>
         </a>
         </li>
 
         <li class="mb-1 group">
-        <button type="button" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+        <button type="button" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
             <ion-icon name="folder-outline" class="mr-2"></ion-icon>
             <span>master data</span>
             <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>
@@ -53,7 +53,7 @@
         </li>
 
         <li class="mb-1 group">
-        <button href="" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle ">
+        <button href="" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
             <ion-icon name="cash-outline" class="mr-2"></ion-icon>  
             <span>transaksi</span>
             <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>
@@ -79,7 +79,7 @@
         </li>
 
         <li class="mb-1 group">
-        <button type="button" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+        <button type="button" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
             <ion-icon name="information-circle-outline" class="mr-2"></ion-icon>  
             <span>informasi</span>
             <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>
@@ -100,7 +100,7 @@
         </li>
 
         <li class="mb-1 group">
-        <button type="button" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+        <button type="button" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
             <ion-icon name="document-outline" class="mr-2"></ion-icon> 
             <span>laporan</span>  
             <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>
@@ -126,7 +126,7 @@
         </li>
 
         <li class="mb-1 group">
-        <a href="" class="flex items-center py-2 px-4 hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+        <a href="" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
             <ion-icon name="settings-outline" class="mr-2"></ion-icon>
             <span>pengaturan</span>  
             </a>

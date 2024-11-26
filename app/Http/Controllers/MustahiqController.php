@@ -14,8 +14,16 @@ class MustahiqController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->input('query');
         $perPage = $request->get('per_page', 10); // Default ke 10 jika tidak ada parameter
-        $mustahiq = Mustahiq::paginate($perPage); //->withQueryString()
+        if($query){
+            $mustahiq = Mustahiq::where('nama_jenis', 'like', '%' . $query . '%')
+            -> orWhere('nik', 'like', '%' . $query . '%')
+            ->paginate($perPage);
+        } else {
+               $mustahiq = Mustahiq::paginate($perPage);
+        }
+      //->withQueryString()
         return view('DataMaster.mustahiq.index', compact('mustahiq'));
     }
 
