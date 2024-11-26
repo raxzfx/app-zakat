@@ -61,7 +61,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($penerimaan as $index =>$nerima)
+                    @foreach ($trans as $index =>$nerima)
                     <tr>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $pemberi->firstItem() + $index }} </td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->nik}}</td>
@@ -93,7 +93,7 @@
                 </tbody>
             </table>
         </div>
-        {{ $penerimaan->links() }}
+        {{ $trans->links() }}
         <!-- end table -->
     </div>   
 </x-layout>

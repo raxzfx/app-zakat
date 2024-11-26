@@ -14,6 +14,8 @@ use App\Models\Category;
 use App\Http\Controllers\JenisPenyaluranController;
 use App\Http\Controllers\JenisPengeluaranController;
 
+use App\Http\Controllers\TransaksiPenerimaanController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -42,7 +44,7 @@ Route::prefix('informasi')->group(function () {
 
 //transaksi
 route::prefix('transaksi')->group(function () {
-    route::resource('/penerimaan', 'App\Http\Controllers\PenerimaanController');  
+    route::resource('/penerimaan', 'App\Http\Controllers\TransaksiPenerimaanController');  
     route::resource('/penyaluran', 'App\Http\Controllers\PenyaluranController');  
 });
 
@@ -51,11 +53,6 @@ Route::get('/Laporan/pengeluaran/index',function(){
 });
 
 
-
-//penerimaan
-Route::get('/Transaksi/penerimaan/create',function(){
-    return view('Transaksi.penerimaan.create');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -15,7 +15,7 @@ class TransaksiPenerimaanController extends Controller
     public function index()
     {
         $trans = TransaksiPenerimaan::with('muzakki', 'jenisPenerimaan')->get();
-        return view('transaksi-penerimaan.index', compact('trans'));
+        return view('transaksi.penerimaan.index', compact('trans'));
     }
 
     /**

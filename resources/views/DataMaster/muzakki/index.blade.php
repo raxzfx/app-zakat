@@ -3,17 +3,17 @@
         <h1 class="uppercase text-xl">master data muzakki</h1>
 
         <div class="flex items-center justify-between mt-4 ">
-            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
+            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm transition-all duration-150 ease-in-out hover:bg-green-700">
                 <span class="mr-2">export data</span>
                 <ion-icon name="download-outline"></ion-icon>
             </button>
 
             <div class="flex items-center">
-                <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
+                <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3 transition-all duration-150 ease-in-out hover:bg-sky-700">
                     <span class="mr-2">filter data</span>
                     <ion-icon name="filter-outline"></ion-icon>
                 </button>
-                <a href="{{ route('muzakki.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+                <a href="{{ route('muzakki.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm transition-all duration-150 ease-in-out hover:bg-sky-700">
                     <span class="mr-2">add data</span>
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </a>
@@ -95,7 +95,7 @@
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 <!-- button edit -->
                                 <a href="{{ route('muzakki.edit', $pemberi->id) }}"
-                                    class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
+                                    class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 transition-all duration-150 ease-in-out hover:bg-green-700">
                                     <ion-icon name="create-outline"></ion-icon>
                                 </a>
                                 <!-- a delete -->
@@ -104,7 +104,7 @@
                                     onsubmit="return confirm('Are you sure you want to delete this user?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
+                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 transition-all duration-150 ease-in-out hover:bg-red-700">
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>
                                 </form>
