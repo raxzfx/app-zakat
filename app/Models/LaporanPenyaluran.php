@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaporanPenyaluran extends Model
 {
-    protected $table = 'transaksi_pengeluaran'; //diambil dari tabel transaksi_pengeluaran
+    protected $table = 'transaksi_penyaluaran'; //diambil dari tabel transaksi_penyaluran
     
     protected $fillable = [
         'tgl_transaksi',
