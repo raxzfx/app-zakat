@@ -3,8 +3,9 @@
     <div class="bg-base-100 w-full rounded-lg shadow capitalize">
       <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
       <div class="w-full p-4">
-        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('users.store') }}" method="POST">
+        <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('transaksi-penyaluran.update' , $transaksiPenyaluran->id ) }}" method="POST">
         @csrf
+        @method('PUT')
           <!-- Account Details -->
           <div class="w-full">
             <h6 class="text-lg font-semibold">Add transaksi penyaluran</h6>
@@ -20,33 +21,42 @@
 
           <!-- First Name and Last Name -->
           <div class="w-full mt-3">
-    <label class="form-control">
-        <div class="label">
-            <span class="label-text">jenis zakat</span>
-        </div>
-        <select 
-            class="input" 
-            required 
-            name="judul">
-            <option value="" disabled selected>Pilih jenis zakat</option>
-            <option value="mr">maal</option>
-            <option value="mrs">fitrah</option>
-        </select>
-        <span class="error-message">Silakan pilih jenis zakat</span>
-        <span class="success-message">Looks good!</span>
-    </label>
-</div>
-
-          <div class="w-full">
             <label class="form-control">
-              <div class="label">
-                <span class="label-text">nama penerima</span>
-              </div>
-              <input type="text" placeholder="nama muzakki" class="input" required name="nik" />
-              <span class="error-message">masukan nik anda dengan benar</span>
-              <span class="success-message">Looks good!</span>
+                <div class="label">
+                    <span class="label-text">jenis zakat</span>
+                </div>
+                <select class="input" required name="jenis_zakat">
+                    <option value="" disabled selected>Pilih jenis zakat</option>
+                    @foreach ($jenis_zakat as $jenis)
+                        <option value="{{ $jenis->kode_jenis }}"
+                            {{ $jenis->kode_jenis == $transaksiPenyaluran->jenis_zakat ? 'selected' : '' }}>
+                            {{ $jenis->deskripsi }}
+                        </option>
+                    @endforeach
+                </select>
+                <span class="error-message">Silakan pilih jenis zakat</span>
+                <span class="success-message">Looks good!</span>
             </label>
-          </div>
+        </div>
+
+        <div class="w-full mt-3">
+          <label class="form-control">
+              <div class="label">
+                  <span class="label-text">mustahiq</span>
+              </div>
+              <select class="input" required name="nama_penerima">
+                <option value="" disabled {{ !$transaksiPenyaluran->nama_penerima ? 'selected' : '' }}>Pilih jenis muzakki</option>
+                @foreach ($mustahiq as $penerima)
+                    <option value="{{ $penerima->id }}"
+                        {{ $penerima->id == $transaksiPenyaluran->nama_penerima ? 'selected' : '' }}>
+                        {{ $penerima->nik }}
+                    </option>
+                @endforeach
+            </select>
+              <span class="error-message">Silakan pilih nama muzakki</span>
+              <span class="success-message">Looks good!</span>
+          </label>
+      </div>
 
           <!-- Email and password -->
           <div class="w-full">
@@ -54,7 +64,7 @@
               <div class="label">
                 <span class="label-text">jumlah</span>
               </div>
-              <input type="number" class="input" placeholder="total" aria-label="john@gmail.com" required name="username" />
+              <input type="number" class="input" placeholder="total" aria-label="john@gmail.com" required name="jumlah" value="{{ old('jumlah', $transaksiPenyaluran->jumlah) }}" />
               <span class="error-message">Please enter a valid email</span>
               <span class="success-message">Looks good!</span>
             </label>
@@ -65,7 +75,7 @@
               <div class="label">
                 <span class="label-text">alamat penerima</span>
               </div>
-              <input type="text" placeholder="nama muzakki" class="input" required name="nik" />
+              <input type="text" placeholder="nama muzakki" class="input" required name="alamat_penerima" value="{{ old('alamat_penerima', $transaksiPenyaluran->alamat_penerima) }}"/>
               <span class="error-message">masukan nik anda dengan benar</span>
               <span class="success-message">Looks good!</span>
             </label>
@@ -82,7 +92,8 @@
             type="date" 
             class="input" 
             required 
-            name="tanggal_lahir" 
+            name="tgl_transaksi" 
+            value="{{ old('tgl_transaksi' , $transaksiPenyaluran->tgl_transaksi) }}"
         />
         <span class="error-message">Masukkan tanggal lahir Anda dengan benar</span>
         <span class="success-message">Looks good!</span>

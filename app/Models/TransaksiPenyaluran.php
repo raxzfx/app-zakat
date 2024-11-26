@@ -19,7 +19,7 @@ class TransaksiPenyaluran extends Model
 
     public function mustahiq()
     {
-        return $this->belongsTo(Mustahiq::class, 'id_mustahiq' , 'id');
+        return $this->belongsTo(Mustahiq::class, 'nama_penerima' , 'id');
     }
 
     public function jenisZakat()

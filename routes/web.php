@@ -30,10 +30,10 @@ Route::prefix('datamaster')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/users', [Users::class, 'index'])->name('users.index');
-        Route::get('/users/formAdd',[Users::class, 'create'])->name('users.create');
-        Route::post('/users/formAdd',[Users::class, 'store'])->name('users.store');
-        Route::get('/users/{id}/formEdit',[Users::class, 'edit'])->name('users.edit');
-        Route::put('/users/{id}/formEdit',[Users::class, 'update'])->name('users.update');
+        Route::get('/users/formAdd', [Users::class, 'create'])->name('users.create');
+        Route::post('/users/formAdd', [Users::class, 'store'])->name('users.store');
+        Route::get('/users/{id}/formEdit', [Users::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}/formEdit', [Users::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [Users::class, 'destroy'])->name('users.destroy');
     });
 
@@ -50,6 +50,8 @@ Route::prefix('datamaster')->group(function () {
 //informasi
 Route::prefix('informasi')->group(function () {
     Route::resource('/informasi-informasi', InformasiController::class);  // Rute untuk Informasi
+    Route::get('informasi/informasi-kategori/{category}/edit', [CategoryController::class, 'edit'])->name('informasi-kategori.edit');
+    Route::put('informasi/informasi-kategori/{category}', [CategoryController::class, 'update'])->name('informasi-kategori.update');
     Route::resource('/informasi-kategori', CategoryController::class);    // Rute untuk Kategori
 });
 
@@ -63,20 +65,13 @@ Route::prefix('transaksi')->group(function () {
 
 });
 
-Route::prefix('laporan')->group(function (){
+Route::prefix('laporan')->group(function () {
 
     Route::resource('/penerimaan', LaporanPenerimaan::class);
     Route::resource('/pengeluaran', LaporanPengeluaran::class);
     Route::resource('/penyaluran', LaporanPenyaluran::class);
 
 });
-
-//transaksi
-route::prefix('transaksi')->group(function () {
-    route::resource('/penerimaan', 'App\Http\Controllers\PenerimaanController');  
-    route::resource('/penyaluran', 'App\Http\Controllers\PenyaluranController');  
-});
-
 
 
 
@@ -93,4 +88,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-    ?>
+?>

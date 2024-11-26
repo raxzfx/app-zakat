@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_muzaki')->constrained('muzakki')->onDelete('cascade'); // Mendefinisikan id_muzaki sebagai foreign key
             $table->foreignId('jenis_zakat')->constrained('jenis_penerimaan', 'kode_jenis')->onDelete('cascade'); // Mendefinisikan jenis_zakat sebagai foreign key
             $table->integer('jumlah');
-            $table->string('bukti');
+            $table->string('bukti')->nullable();
             $table->timestamps();
         });
         

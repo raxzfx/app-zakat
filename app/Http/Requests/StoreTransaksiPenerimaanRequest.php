@@ -20,12 +20,12 @@ class StoreTransaksiPenerimaanRequest extends FormRequest
     public function rules()
     {
         return [
-            'tgl_penerimaan' => 'required|date',
-            'id_muzakki' => 'required|integer|exists:muzakkis,id',
-            'jenis_zakat' => 'required|string|exists:jenis_zakat,kode_jenis',
-            'tgl_transaksi' => 'required|date',
-            'jumlah' => 'required|integer',
-            'bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'id_muzaki' => 'required|exists:muzakki,id',
+        'tgl_penerimaan' => 'required|date',
+        'jenis_zakat' => 'required|exists:jenis_penerimaan,kode_jenis',
+        'tgl_transaksi' => 'required|date',
+        'jumlah' => 'required|numeric|min:1',
+        'bukti' => 'nullable|file|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file
         ];
     }
 
@@ -35,8 +35,8 @@ class StoreTransaksiPenerimaanRequest extends FormRequest
     public function messages()
     {
         return [
-            'id_muzakki.required' => 'ID Muzakki wajib diisi.',
-            'id_muzakki.integer' => 'ID Muzakki harus berupa angka.',
+            'id_muzaki.required' => 'ID Muzakki wajib diisi.',
+            'id_muzaki.integer' => 'ID Muzakki harus berupa angka.',
             'tgl_transaksi.required' => 'Tanggal transaksi wajib diisi.',
             'tgl_transaksi.date' => 'Tanggal transaksi harus berupa tanggal yang valid.',
             'jenis_zakat.required' => 'Jenis zakat wajib diisi.',

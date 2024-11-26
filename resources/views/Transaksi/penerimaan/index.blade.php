@@ -7,19 +7,7 @@
                 <span class="mr-2">export data</span>
                 <ion-icon name="download-outline"></ion-icon>
             </button>
-
-<<<<<<< Updated upstream
-        <div class="flex items-center">
-        <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
-                                <span class="mr-2">filter data</span>
-                                <ion-icon name="filter-outline"></ion-icon>
-                            </button>
-        <a href="{{ route('penerimaan.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
-                                <span class="mr-2">add data</span>
-                                <ion-icon name="add-circle-outline"></ion-icon>
-                            </a>
-        </div>
-=======
+            
             <div class="flex items-center">
                 <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
                     <span class="mr-2">filter data</span>
@@ -30,7 +18,7 @@
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </a>
             </div>
->>>>>>> Stashed changes
+
         </div>
 
         <div class="flex items-center justify-between mt-4 text-sm">
@@ -93,58 +81,36 @@
                     </tr>
                 </thead>
                 <tbody>
-<<<<<<< Updated upstream
-                    @foreach ($penerimaan as $index =>$nerima)
-                    <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $pemberi->firstItem() + $index }} </td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->nik}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->name}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$pemberi->username}}</td>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
-                        {{ strlen($pemberi->password) > 7 ? substr($pemberi->password, 0, 7) . '...' : $pemberi->password }}
-                        </td>   
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
-                            <!-- button edit -->
-                            <a href="{{ route('penerimaan.edit', $nerima->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </a>
-                            <!-- a delete -->
-                            <form action="{{ route('penerimaan.destroy', $nerima->id) }}" method="POST" class="mt-2" onsubmit="return confirm('Are you sure you want to delete this user?');">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
-        <ion-icon name="trash-outline"></ion-icon>
-    </button>
-</form>
-=======
                     @foreach ($transaksi as $index => $trans)
                         <tr>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 {{ $transaksi->firstItem() + $index }} </td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->jenis_zakat->name }}</td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->id_muzakki->name }}</td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->create_at->format('Y-m-d') }}
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->jenisZakat->deskripsi }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->muzakki->nama_lengkap }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->jumlah }}
                             </td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->bukti }}
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
+                                @if($trans->bukti)
+                                    <img src="{{ asset($trans->bukti) }}" alt="Bukti" class="w-20 h-auto">
+                                @else
+                                    <span>Tidak ada bukti</span>
+                                @endif
                             </td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->tgl_penerimaan->format('Y-m-d') }}
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->tgl_penerimaan_formatted }}
                             </td>
-                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->tgl_transaksi->format('Y-m-d') }}
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->created_at->format('Y-m-d') }}
                             </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm ">
-                                {{ $trans->jumlah }}
+                                {{ $trans->tgl_transaksi_formatted }}
                             </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 <!-- button edit -->
-                                <a href="{{ route('muzakki.edit', $trans->id) }}"
+                                <a href="{{ route('transaksi-penerimaan.edit', $trans->id) }}"
                                     class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
                                     <ion-icon name="create-outline"></ion-icon>
                                 </a>
                                 <!-- a delete -->
-                                <form action="{{ route('muzakki.destroy', $trans->id) }}" method="POST"
+                                <form action="{{ route('transaksi-penerimaan.destroy', $trans->id) }}" method="POST"
                                     class="mt-2"
                                     onsubmit="return confirm('Are you sure you want to delete this user?');">
                                     @csrf
@@ -153,19 +119,15 @@
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>
                                 </form>
->>>>>>> Stashed changes
-
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-<<<<<<< Updated upstream
-        {{ $penerimaan->links() }}
-=======
+
         {{ $transaksi->links() }}
->>>>>>> Stashed changes
+
         <!-- end table -->
     </div>
 </x-layout>

@@ -4,7 +4,7 @@
         <div class="bg-base-100 w-full rounded-lg shadow capitalize">
             <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
             <div class="w-full p-4">
-                <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('kategori.store') }}"
+                <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('informasi-kategori.store') }}"
                     method="POST">
                     @csrf
                     <!-- Account Details -->
