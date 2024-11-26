@@ -22,7 +22,13 @@ class UpdatePengaturanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_mesjid' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'koordinat' => 'required|string|max:255',
+            'no_telp' => 'string|max:255',
+            'nama_pimpinan' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:255',
+            'email' => 'string|max:255',
         ];
     }
 }

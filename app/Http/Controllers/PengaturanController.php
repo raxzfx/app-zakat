@@ -13,7 +13,8 @@ class PengaturanController extends Controller
      */
     public function index()
     {
-        //
+        $setting = Pengaturan::all();
+        return view('pengaturan.index', compact('setting'));
     }
 
     /**
@@ -21,7 +22,7 @@ class PengaturanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pengaturan.create');
     }
 
     /**
@@ -29,7 +30,17 @@ class PengaturanController extends Controller
      */
     public function store(StorePengaturanRequest $request)
     {
-        //
+        Pengaturan::create([
+            'nama_mesjid' => $request->nama_mesjid,
+            'alamat' => $request->alamat,
+            'koordinat' => $request->koordinat,
+            'no_telp' => $request->no_telp,
+            'nama_pimpinan' => $request->nama_pimpinan,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+        ]);
+
+    return redirect()->route('pengaturan.index')->with('success', 'Created successfully.');
     }
 
     /**
@@ -37,7 +48,8 @@ class PengaturanController extends Controller
      */
     public function show(Pengaturan $pengaturan)
     {
-        //
+        $pengaturan = Pengaturan::findOrFail($pengaturan->id);
+        return view('pengaturan.show', compact('pengaturan'));
     }
 
     /**
@@ -45,7 +57,8 @@ class PengaturanController extends Controller
      */
     public function edit(Pengaturan $pengaturan)
     {
-        //
+        $pengaturan = Pengaturan::findOrFail($pengaturan->id);
+        return view('pengaturan.update', compact('pengaturan'));
     }
 
     /**
@@ -53,7 +66,18 @@ class PengaturanController extends Controller
      */
     public function update(UpdatePengaturanRequest $request, Pengaturan $pengaturan)
     {
-        //
+        $pengaturan->update([
+            'nama_mesjid' => $request->nama_mesjid,
+            'alamat' => $request->alamat,
+            'koordinat' => $request->koordinat,
+            'no_telp' => $request->no_telp,
+            'nama_pimpinan' => $request->nama_pimpinan,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+        ]);
+    
+    
+        return redirect()->route('pengaturan.index')->with('success', 'Updated successfully.');
     }
 
     /**
@@ -61,6 +85,7 @@ class PengaturanController extends Controller
      */
     public function destroy(Pengaturan $pengaturan)
     {
-        //
+        $pengaturan->delete();
+        return redirect()->route('pengaturan.index')->with('success', 'Deleted successfully.');
     }
 }
