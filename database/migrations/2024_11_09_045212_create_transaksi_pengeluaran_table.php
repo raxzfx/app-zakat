@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('transaksi_pengeluaran', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pengeluaran');
-            $table->text('alamat_penerima');
-            $table->integer('jumlah');
+            $table->string('deskripsi') ->nullable();
             $table->date('tgl_transaksi');
-            $table->foreignId('jenis_zakat')->references('kode_jenis')->on('jenis_pengeluaran')->onDelete('cascade');
             $table->timestamps();
         });
     }

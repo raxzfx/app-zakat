@@ -33,14 +33,24 @@
     <span>entries</span>
 </div>
        
-
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative mt-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <ion-icon name="search-outline"></ion-icon>
-                </div>
-                <input type="text" id="table-search" class="block w-64 pl-10 p-2 border border-gray-200 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Search for items">
-            </div>
+<form action="{{ route('transaksi-penyaluran.index') }}" method="GET" class="relative mt-1 flex items-center">
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <input 
+        type="text" 
+        id="table-search" 
+        name="query" 
+        class="block w-64 pl-10 p-2 border border-gray-200 rounded-l-md text-sm focus:ring-blue-500 focus:border-blue-500" 
+        placeholder="Search anyone" 
+        value="{{ request('query') }}"> <!-- Tetap tampilkan query -->
+    <button 
+        type="submit" 
+        class="bg-blue-500 text-white py-2 px-3 rounded-r-md text-sm transition-all duration-150 ease-in-out hover:bg-blue-600">
+        Submit
+    </button>
+</form>
         </div>
 
 
@@ -59,9 +69,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($trasnPenyaluran as $index => $trans)
+                    @foreach ($transPenyaluran as $index => $trans)
                     <tr>
-                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $trasnPenyaluran->firstItem() + $index }} </td>
+                        <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $transPenyaluran->firstItem() + $index }} </td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$trans->mustahiq->nik}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$trans->jenisZakat->deskripsi}}</td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$trans->jumlah}}</td>
@@ -87,7 +97,7 @@
                 </tbody>
             </table>
         </div>
-        {{ $trasnPenyaluran->links() }}
+        {{ $transPenyaluran->links() }}
         <!-- end table -->
     </div>   
 </x-layout>

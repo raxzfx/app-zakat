@@ -19,6 +19,7 @@ class MustahiqController extends Controller
         if($query){
             $mustahiq = Mustahiq::where('nama_jenis', 'like', '%' . $query . '%')
             -> orWhere('nik', 'like', '%' . $query . '%')
+            -> orWhere('nama_lengkap', 'like', '%' . $query . '%')
             ->paginate($perPage);
         } else {
                $mustahiq = Mustahiq::paginate($perPage);

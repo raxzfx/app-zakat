@@ -18,13 +18,25 @@ class TransaksiPenerimaanController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = (int) $request->get('per_page', 10);
-        $per_page = $per_page > 0 ? $per_page : 10;
-
-        $transaksi = TransaksiPenerimaan::with('muzakki', 'jenisZakat')
-            ->selectRaw("*, DATE_FORMAT(tgl_penerimaan, '%Y-%m-%d') as tgl_penerimaan_formatted, DATE_FORMAT(tgl_transaksi, '%Y-%m-%d') as tgl_transaksi_formatted")
-            ->paginate($per_page);
-
+        $query = $request->input('query'); // Ambil kata kunci pencarian
+        $per_page = (int) $request->get('per_page', 10); // Ambil jumlah per halaman
+        $per_page = $per_page > 0 ? $per_page : 10; // Pastikan nilai default valid
+    
+        $transaksi = TransaksiPenerimaan::with('muzakki', 'jenisZakat') // Pastikan relasi ini ada
+            ->selectRaw("*, 
+                DATE_FORMAT(tgl_penerimaan, '%Y-%m-%d') as tgl_penerimaan_formatted, 
+                DATE_FORMAT(tgl_transaksi, '%Y-%m-%d') as tgl_transaksi_formatted");
+    
+        // Jika ada query pencarian
+        if ($query) {
+            $transaksi = $transaksi->whereHas('muzakki', function ($q) use ($query) {
+                $q->where('nama_lengkap', 'like', '%' . $query . '%'); // Filter berdasarkan nama muzakki
+            });
+        }
+    
+        // Paginate data
+        $transaksi = $transaksi->paginate($per_page);
+    
         return view('transaksi.penerimaan.index', compact('transaksi'));
 
     }

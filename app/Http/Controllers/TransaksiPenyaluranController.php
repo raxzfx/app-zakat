@@ -16,11 +16,25 @@ class TransaksiPenyaluranController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->input('query');
         $per_page = (int) $request->get('per_page', 10);
         $per_page = $per_page > 0 ? $per_page : 10;
-        $trasnPenyaluran = TransaksiPenyaluran::with('mustahiq' , 'jenisZakat')->paginate($per_page);
-        return view('transaksi.penyaluran.index', compact('trasnPenyaluran' ));
+    
+        $transPenyaluran = TransaksiPenyaluran::with('mustahiq', 'jenisZakat');
+    
+        // Jika ada query pencarian
+        if ($query) {
+            $transPenyaluran = $transPenyaluran->whereHas('jenisZakat', function ($queryBuilder) use ($query) {
+                $queryBuilder->where('deskripsi', 'like', '%' . $query . '%');
+            });
+        }
+    
+        // Paginate data
+        $transPenyaluran = $transPenyaluran->paginate($per_page);
+    
+        return view('transaksi.penyaluran.index', compact('transPenyaluran'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

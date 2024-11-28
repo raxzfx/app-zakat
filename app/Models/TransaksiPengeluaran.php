@@ -10,10 +10,9 @@ class TransaksiPengeluaran extends Model
 
     protected $fillable = [
         'nama_pengeluaran',
-        'alamat_penerima',
-        'jumlah',
+        'deskripsi',
         'tgl_transaksi',
-        'jenis_zakat',
+
     ];
 
     public function jenisPengeluaran()

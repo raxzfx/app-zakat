@@ -16,8 +16,17 @@ class TransaksiPengeluaranController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->input('query');
         $per_page = $request->get('per_page', 10);
-        $transPengeluaran = TransaksiPengeluaran::with( 'jenisPengeluaran')->paginate($per_page);
+
+        if ($query) {
+            $transPengeluaran = TransaksiPengeluaran::where('nama_pengeluaran', 'like', '%' . $query . '%')
+            ->paginate($per_page);
+        } else {    
+            $transPengeluaran = TransaksiPengeluaran::paginate($per_page);
+        }
+
+
         return view('transaksi.pengeluaran.index', compact('transPengeluaran'));
     }
 
@@ -38,9 +47,7 @@ class TransaksiPengeluaranController extends Controller
         
         TransaksiPengeluaran::create([
             'nama_pengeluaran' => $request->nama_pengeluaran,
-            'alamat_penerima' => $request->alamat_penerima,
-            'jumlah' => $request->jumlah,
-            'jenis_zakat' => $request->jenis_zakat,
+            'deskripsi' => $request->deskripsi,
             'tgl_transaksi' => $request->tgl_transaksi
         ]);
 

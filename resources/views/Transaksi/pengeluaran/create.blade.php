@@ -40,40 +40,13 @@
                         </label>
                     </div>
 
-                    <div class="w-full">
-                      <label class="form-control">
-                          <div class="label">
-                              <span class="label-text">alamat penerima</span>
-                          </div>
-                          <input type="text" placeholder="alamat_penerima" class="input" required name="alamat_penerima" />
-                          <span class="error-message">masukan alamat_perima anda dengan benar</span>
-                          <span class="success-message">Looks good!</span>
-                      </label>
-                  </div>
-
-                    <!-- First Name and Last Name -->
-                    <div class="w-full">
-                        <label class="form-control">
-                            <div class="label">
-                                <span class="label-text"> jenis zakat</span>
-                            </div>
-                            <select name="jenis_zakat" id="jenis_zakat" class="input" required>
-                              <option disabled selected>Pilih jenis zakat</option>
-                              @foreach ($jenisPengeluaran as $jenis)
-                                  <option value="{{ $jenis->kode_jenis }}">{{ $jenis->jenis_pengeluaran }}</option>
-                              @endforeach
-                          </select>
-                            <span class="error-message">kode jenis</span>
-                            <span class="success-message">Looks good!</span>
-                        </label>
-                    </div>
 
                     <div class="w-full">
                         <label class="form-control">
                             <div class="label">
-                                <span class="label-text">jumlah</span>
+                                <span class="label-text">deskripsi</span>
                             </div>
-                            <input type="number" placeholder="jumlah" class="input" required name="jumlah" />
+                            <input type="text" placeholder="deskripsi" class="input"  name="deskripsi" />
                             <span class="error-message">masukan jumlah anda dengan benar</span>
                             <span class="success-message">Looks good!</span>
                         </label>
