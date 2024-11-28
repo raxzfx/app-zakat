@@ -26,6 +26,7 @@ class TransaksiPenerimaanController extends Controller
             ->paginate($per_page);
 
         return view('transaksi.penerimaan.index', compact('transaksi'));
+
     }
 
     /**

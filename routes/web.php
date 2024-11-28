@@ -24,7 +24,9 @@ use App\Http\Controllers\TransaksiPenerimaanController;
 use App\Http\Controllers\TransaksiPenyaluranController;
 use App\Http\Controllers\TransaksiPengeluaranController;
 
-// Route utama
+
+
+
 Route::get('/', function () {
     return view('index');
 });
@@ -78,7 +80,55 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+
     // Profile
+
+    Route::resource('/jenis-penyaluran', JenisPenyaluranController::class);
+});
+//informasi
+Route::prefix('informasi')->group(function () {
+    Route::resource('/informasi-informasi', InformasiController::class);  // Rute untuk Informasi
+    Route::get('informasi/informasi-kategori/{category}/edit', [CategoryController::class, 'edit'])->name('informasi-kategori.edit');
+    Route::put('informasi/informasi-kategori/{category}', [CategoryController::class, 'update'])->name('informasi-kategori.update');
+    Route::resource('/informasi-kategori', CategoryController::class);    // Rute untuk Kategori
+});
+
+
+//transaksi
+
+Route::prefix('transaksi')->group(function () {
+
+    Route::resource('/transaksi-penerimaan', TransaksiPenerimaanController::class);
+    Route::resource('/transaksi-penyaluran', TransaksiPenyaluranController::class);
+    Route::resource('/transaksi-pengeluaran', TransaksiPengeluaranController::class);
+
+});
+
+Route::get('/Pengaturan/index', function () {
+    return view('Pengaturan.index');
+}
+
+);
+
+Route::prefix('laporan')->group(function () {
+
+    Route::resource('/penerimaan', LaporanPenerimaan::class);
+    Route::resource('/pengeluaran', LaporanPengeluaran::class);
+    Route::resource('/penyaluran', LaporanPenyaluran::class);
+
+
+});
+
+Route::get('/Laporan/pengeluaran/index',function(){
+     return view('Laporan.pengeluaran.index');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

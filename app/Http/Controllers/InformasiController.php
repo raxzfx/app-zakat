@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Informasi;
 use App\Http\Requests\StoreInformasiRequest;
 use App\Http\Requests\UpdateInformasiRequest;
+use Illuminate\Http\Request;
 
 class InformasiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(request $request)
     {
-        $informasi = Informasi::paginate();
+        $querry = $request->input('query');
+        $perPage = $request->get('per_page', 10); 
+
+        if($querry){
+            $informasi = Informasi::where('judul', 'like', '%' . $querry . '%')->paginate($perPage);
+        } else {
+            $informasi = Informasi::paginate($perPage);
+        }
+
         return view('informasi.informasi.index', compact('informasi'));
     }
 

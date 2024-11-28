@@ -21,9 +21,9 @@
                             <div class="label">
                                 <span class="label-text">kategori</span>
                             </div>
-                            <input type="text" placeholder="masukan judul" class="input" required
+                            <input type="text" placeholder="input kategori" class="input" required
                                 name="nama_kategori" value="{{ old('nama_kategori', $informasi_kategori->nama_kategori) }}" />
-                            <span class="error-message">masukan nama lengkap anda</span>
+                            <span class="error-message">masukan kategori dengan benar</span>
                             <span class="success-message">Looks good!</span>
                         </label>
                     </div>
