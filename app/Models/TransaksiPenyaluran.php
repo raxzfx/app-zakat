@@ -16,6 +16,9 @@ class TransaksiPenyaluran extends Model
         'tgl_transaksi',
         'nama_penerima',
     ];
+    protected $casts = [
+        'tgl_transaksi' => 'datetime',  // Pastikan kolom tgl_transaksi di-cast menjadi objek Carbon
+    ];
 
     public function mustahiq()
     {

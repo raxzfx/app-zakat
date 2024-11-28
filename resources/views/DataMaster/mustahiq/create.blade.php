@@ -42,6 +42,16 @@
           <div class="w-full">
             <label class="form-control">
               <div class="label">
+                <span class="label-text">nama mustahiq</span>
+              </div>
+              <input type="text" placeholder="nama mustahiq" class="input" required name="nama_lengkap" />
+              <span class="error-message">masukan nama_lengkap anda dengan benar</span>
+              <span class="success-message">Looks good!</span>
+            </label>
+          </div>
+          <div class="w-full">
+            <label class="form-control">
+              <div class="label">
                 <span class="label-text">nik</span>
               </div>
               <input type="text" placeholder="NIK" class="input" required name="nik" />

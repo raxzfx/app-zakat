@@ -41,6 +41,7 @@ class MustahiqController extends Controller
     public function store(StoreMustahiqRequest $request)
     {
         Mustahiq::create([
+            'nama_lengkap'=>$request->nama_lengkap,
             'kode_jenis' => $request->kode_jenis,
             'nik' => $request->nik,
             'nama_jenis' =>$request->nama_jenis,
@@ -72,6 +73,7 @@ class MustahiqController extends Controller
     public function update(UpdateMustahiqRequest $request, Mustahiq $mustahiq)
     {
         $mustahiq->update([
+            'nama_lengkap'=>$request->nama_lengkap,
             'kode_jenis' => $request->kode_jenis,
             'nik' => $request->nik,
             'nama_jenis' =>$request->nama_jenis,

@@ -42,39 +42,39 @@ class TransaksiPenerimaanController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreTransaksiPenerimaanRequest $request)
-    {
-        try {
-            Log::info('Request data:', $request->all());
+{
+    Log::info('Request data:', $request->all());
 
-            if ($request->hasFile('bukti')) {
-                // Simpan file gambar ke storage
-                $path = $request->file('bukti')->store('public/images');
-                $data['bukti'] = Storage::url($path); // Menyimpan URL file ke dalam database
-            } else {
-            // Menghapus 'foto' dari data jika tidak ada file
-            unset($data['bukti']);
+    // Cek apakah ada file yang diunggah
+    if ($request->hasFile('bukti')) {
+        // Simpan file ke storage di folder public/images
+        $path = $request->file('bukti')->store('public/img');
+
+        // Cek apakah file berhasil disimpan
+        if ($path) {
+            Log::info('File berhasil disimpan di: ' . $path);
+        } else {
+            Log::error('File gagal disimpan');
         }
-
-        
-
-            TransaksiPenerimaan::create([
-                'id_muzaki' => $request->id_muzaki,
-                'tgl_penerimaan' => $request->tgl_penerimaan,
-                'jenis_zakat' => $request->jenis_zakat,
-                'tgl_transaksi' => $request->tgl_transaksi,
-                'jumlah' => $request->jumlah,
-                'bukti' => $path ? Storage::url($path) : null,
-            ]);
-
-            Log::info('Data berhasil disimpan.');
-
-            return redirect()->route('transaksi-penerimaan.index')->with('success', 'Data dan file berhasil di-upload!');
-        } catch (\Exception $e) {
-            Log::error('Error:', ['message' => $e->getMessage()]);
-            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
-        }
-
+    } else {
+        $path = null; // Jika tidak ada file, set $path ke null
     }
+
+    // Simpan data transaksi penerimaan ke database
+    TransaksiPenerimaan::create([
+        'id_muzaki' => $request->id_muzaki,
+        'tgl_penerimaan' => $request->tgl_penerimaan,
+        'jenis_zakat' => $request->jenis_zakat,
+        'tgl_transaksi' => $request->tgl_transaksi,
+        'jumlah' => $request->jumlah,
+        'bukti' => $path ? Storage::url($path) : null, // Menyimpan URL file di database
+    ]);
+
+    Log::info('Data berhasil disimpan.');
+
+    return redirect()->route('transaksi-penerimaan.index')->with('success', 'Data dan file berhasil di-upload!');
+}
+
 
     /**
      * Display the specified resource.

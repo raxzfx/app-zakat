@@ -22,6 +22,7 @@ class UpdateMustahiqRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nama_lengkap' => 'required|string|max:255',
             'kode_jenis' => 'required|string|max:255',
             'nik' => 'required|numeric|unique:mustahiq,nik,' .  $this->route('mustahiq')->id,
             'nama_jenis' =>'required|string|max:255',

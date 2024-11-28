@@ -44,7 +44,7 @@ class TransaksiPengeluaranController extends Controller
             'tgl_transaksi' => $request->tgl_transaksi
         ]);
 
-        redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran created successfully.');
+        return redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran created successfully.');
     }
 
     /**

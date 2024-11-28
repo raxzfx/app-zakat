@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mustahiq', function (Blueprint $table) {
+        Schema::create('laporan_pengeluaran', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_jenis');
-            $table->bigInteger('nik')->unique();
-            $table->string('nama_lengkap'); 
-            $table->string('nama_jenis') ->length(255);
+            $table->bigInteger('jumlah_pengeluaran');
+            $table->foreignId('transaksi_pengeluaran')->references('id')->on('transaksi_pengeluaran')->onDelete('cascade');
+            $table->foreignId('jenis_zakat')->references('kode_jenis')->on('jenis_pengeluaran')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mustahiq');
+        Schema::dropIfExists('laporan_pengeluaran');
     }
 };

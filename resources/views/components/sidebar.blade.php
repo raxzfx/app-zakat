@@ -5,7 +5,7 @@
      </div>
      <ul class="pt-6 text-black text-sm capitalize">
         <li class="mb-1 group active">
-         <a href="" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white  group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
+         <a href="{{ route('dashboard')}}" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle">
             <ion-icon name="home-outline" class="mr-2"></ion-icon>
             <span>dashboard</span>
         </a>

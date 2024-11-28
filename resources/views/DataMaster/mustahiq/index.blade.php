@@ -76,6 +76,9 @@
                             kode jenis</th>
                         <th
                             class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
+                            nama mustahiq</th>
+                        <th
+                            class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
                             nik</th>
                         <th
                             class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
@@ -98,6 +101,7 @@
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 {{ $mustahiq->firstItem() + $index }} </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $penerima->kode_jenis }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $penerima->nama_lengkap }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $penerima->nik }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 {{ strlen($penerima->nama_jenis) > 7 ? substr($penerima->nama_jenis, 0, 7) . '...' : $penerima->nama_jenis }}

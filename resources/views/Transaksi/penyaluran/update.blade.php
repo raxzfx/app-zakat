@@ -75,7 +75,7 @@
               <div class="label">
                 <span class="label-text">alamat penerima</span>
               </div>
-              <input type="text" placeholder="nama muzakki" class="input" required name="alamat_penerima" value="{{ old('alamat_penerima', $transaksiPenyaluran->alamat_penerima) }}"/>
+              <input type="text" placeholder="nama " class="input" required name="alamat_penerima" value="{{ old('alamat_penerima', $transaksiPenyaluran->alamat_penerima) }}"/>
               <span class="error-message">masukan nik anda dengan benar</span>
               <span class="success-message">Looks good!</span>
             </label>

@@ -25,7 +25,7 @@ class StoreTransaksiPenerimaanRequest extends FormRequest
         'jenis_zakat' => 'required|exists:jenis_penerimaan,kode_jenis',
         'tgl_transaksi' => 'required|date',
         'jumlah' => 'required|numeric|min:1',
-        'bukti' => 'nullable|file|mimes:jpeg,png,jpg|max:2048', // Validasi untuk file
+        'bukti' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048', // Validasi untuk file
         ];
     }
 

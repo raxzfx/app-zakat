@@ -37,7 +37,7 @@
                             <select class="input" required name="jenis_zakat">
                                 <option value="" disabled selected>Pilih jenis zakat</option>
                                   @foreach ($jenis_zakat as $jenis )
-                                    <option value="{{ $jenis->kode_jenis }}">{{ $jenis->deskripsi }}</option>
+                                    <option value="{{ $jenis->kode_jenis }}">{{ $jenis->jenis_pengeluaran }}</option>
                                   @endforeach
                             </select>
                             <span class="error-message">Silakan pilih jenis zakat</span>
@@ -53,7 +53,7 @@
                             <select class="input" required name="nama_penerima">
                                 <option value="" disabled selected>Pilih jenis zakat</option>
                                   @foreach ($mustahiq as $penerima )
-                                    <option value="{{ $penerima->id }}">{{ $penerima->nama_jenis }}</option>
+                                    <option value="{{ $penerima->id }}">{{ $penerima->nama_lengkap }}</option>
                                   @endforeach
                             </select>
                             <span class="error-message">Silakan pilih jenis zakat</span>

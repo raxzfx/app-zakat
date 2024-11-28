@@ -23,7 +23,7 @@ class StoreTransaksiPenyaluranRequest extends FormRequest
     {
         return [
             'jenis_zakat' => 'required|exists:jenis_penyaluran,kode_jenis',
-            'nama_penerima' => 'required|exists:muzakki,id',
+            'nama_penerima' => 'required|exists:mustahiq,id',
             'alamat_penerima' => 'required|string',
             'jumlah' => 'required|integer',
             'tgl_transaksi' => 'required|date',

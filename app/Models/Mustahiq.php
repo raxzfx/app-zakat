@@ -12,6 +12,7 @@ class Mustahiq extends Model
         'kode_jenis',
         'nik',
         'nama_jenis',
+        'nama_lengkap',
     ];
 
     public function TransaksiPenyaluran() {

@@ -20,4 +20,8 @@ class TransaksiPengeluaran extends Model
 {
     return $this->belongsTo(JenisPengeluaran::class, 'jenis_zakat', 'kode_jenis');
 }
+
+    public function laporanPengeluaran(){
+        return $this->hasMany(LaporanPengeluaran::class, 'transaksi_pengeluaran', 'id');
+    }
 }
