@@ -52,44 +52,6 @@
             </label>
           </div>
 
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">Password</span>
-              </div>
-              <div class="input-group">
-                <input id="password" type="password" class="input" placeholder=" password"  name="password" />
-                <span class="input-group-text">
-                  <button type="button" data-toggle-password='{ "target": "#password" }' class="block">
-                    <span class="icon-[tabler--eye] text-base-content/80 password-active:block hidden size-4 flex-shrink-0"></span>
-                    <span class="icon-[tabler--eye-off] text-base-content/80 password-active:hidden block size-4 flex-shrink-0"></span>
-                  </button>
-                </span>
-              </div>
-              <span class="error-message">Please enter a valid password</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
-
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">confirm Password</span>
-              </div>
-              <div class="input-group">
-                <input id="password" type="password" class="input" placeholder=" password"  name="password_confirmation" />
-                <span class="input-group-text">
-                  <button type="button" data-toggle-password='{ "target": "#password" }' class="block">
-                    <span class="icon-[tabler--eye] text-base-content/80 password-active:block hidden size-4 flex-shrink-0"></span>
-                    <span class="icon-[tabler--eye-off] text-base-content/80 password-active:hidden block size-4 flex-shrink-0"></span>
-                  </button>
-                </span>
-              </div>
-              <span class="error-message">Please enter a valid password</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
-
           <!-- Terms and Conditions -->
           <div class="w-full">
             <label class="flex items-center gap-3">

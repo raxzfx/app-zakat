@@ -30,13 +30,15 @@
 
 
           <!-- First Name and Last Name -->
+
+
           <div class="w-full">
             <label class="form-control">
               <div class="label">
-                <span class="label-text">kode jenis</span>
+                <span class="label-text">jenis penyaluran</span>
               </div>
-              <input type="text" placeholder="masukan nama lengkap" class="input" required value="{{ old('kode_jenis', $jenisPenyaluran->kode_jenis) }}"  readonly/>
-              <span class="error-message">kode jenis lengkap anda</span>
+              <input type="text" placeholder="jenis penyaluran" class="input" required name="jenis_pengeluaran" value="{{ old('jenis_pengeluaran', $jenisPenyaluran->jenis_pengeluaran) }}" />
+              <span class="error-message">masukan jenis_penyaluran</span>
               <span class="success-message">Looks good!</span>
             </label>
           </div>
@@ -52,16 +54,7 @@
             </label>
           </div>
 
-          <div class="w-full">
-            <label class="form-control">
-              <div class="label">
-                <span class="label-text">jenis pengeluaran</span>
-              </div>
-              <input type="text" placeholder="jenis penyaluran" class="input" required name="jenis_pengeluaran" value="{{ old('jenis_pengeluaran', $jenisPenyaluran->jenis_pengeluaran) }}" />
-              <span class="error-message">masukan jenis_penyaluran</span>
-              <span class="success-message">Looks good!</span>
-            </label>
-          </div>
+          
 
 
           <!-- Terms and Conditions -->

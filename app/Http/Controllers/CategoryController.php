@@ -12,8 +12,15 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $querry = $request->input('query');
         $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
-        $categories = Category::paginate($perPage); // 15 adalah jumlah item per halaman
+
+        if($querry){
+            $categories = Category::where('nama_kategori', 'like', '%' . $querry . '%')->paginate($perPage);
+        }else{
+            $categories = Category::paginate($perPage);
+        }
+
         return view('informasi.kategori.index', compact('categories'));
     }
 
@@ -34,53 +41,53 @@ class CategoryController extends Controller
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-      Category::create([
+        Category::create([
             'nama_kategori' => $request->nama_kategori,
         ]);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('informasi-kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $informasi_kategori)
     {
-        $Category = Category::findOrFail($category->id);
-        return view('informasi.kategori.show', compact('Category'));
+        $informasi_kategori = Category::findOrFail($informasi_kategori->id);
+        return view('informasi.kategori.show', compact('informasi_kategori'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Category $informasi_kategori)
     {
-      
-        return view('informasi.kategori.update', compact('category'));
+        
+        return view('informasi.kategori.update', compact('informasi_kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $informasi_kategori)
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        $category->update([
+        $informasi_kategori->update([
             'nama_kategori' => $request->nama_kategori,
         ]);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui.');
+        return redirect()->route('informasi-kategori.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Category $informasi_kategori)
     {
-        $category->delete();
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
+        $informasi_kategori->delete();
+        return redirect()->route('informasi-kategori.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

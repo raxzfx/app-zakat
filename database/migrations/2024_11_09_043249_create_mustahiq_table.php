@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_jenis');
             $table->bigInteger('nik')->unique();
+            $table->string('nama_lengkap'); 
             $table->string('nama_jenis') ->length(255);
             $table->timestamps();
         });

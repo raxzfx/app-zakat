@@ -25,7 +25,7 @@ class StoreTransaksiPengeluaranRequest extends FormRequest
             'nama_pengeluaran' => 'required|string|max:255',
             'alamat_penerima' =>  'required|string',
             'jumlah' => 'required|integer',
-            'jenis_zakat' => 'required|string|exists:jenis_pengeluaran,kode_jenis',
+            'jenis_zakat' => 'required|integer|exists:jenis_pengeluaran,kode_jenis',
             'tgl_transaksi' => 'required|date',
         ];
     }

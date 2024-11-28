@@ -18,7 +18,11 @@ class JenisPengeluaran extends Model
 
     public function transaksiPenyaluran()
     {
-        return $this->hasMany(TransaksiPenyaluran::class, 'jenis_zakat', 'kode_jenis');
+        return $this->hasMany(TransaksiPengeluaran::class, 'jenis_zakat', 'kode_jenis');
+    }
+
+    public function laporanPengeluaran(){
+        return $this->hasMany(LaporanPengeluaran::class, 'jenis_pengeluaran', 'kode_jenis');
     }
     
 }

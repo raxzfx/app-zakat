@@ -14,8 +14,16 @@ class JenisPenerimaanController extends Controller
      */
     public function index(Request $request)
     {
+        $query = $request->input('query');
         $per_page = $request->get('per_page', 10);
-        $jenisPenerimaan = JenisPenerimaan::paginate($per_page);
+
+        if ($query) {
+            $jenisPenerimaan = JenisPenerimaan::where('deskripsi', 'like', '%' . $query . '%')
+                ->paginate($per_page);
+        } else {
+            $jenisPenerimaan = JenisPenerimaan::paginate($per_page);
+        }
+
         return view('DataMaster.jenis-penerimaan.index', compact('jenisPenerimaan'));
 
         

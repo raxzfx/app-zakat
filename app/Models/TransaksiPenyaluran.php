@@ -16,10 +16,13 @@ class TransaksiPenyaluran extends Model
         'tgl_transaksi',
         'nama_penerima',
     ];
+    protected $casts = [
+        'tgl_transaksi' => 'datetime',  // Pastikan kolom tgl_transaksi di-cast menjadi objek Carbon
+    ];
 
     public function mustahiq()
     {
-        return $this->belongsTo(Mustahiq::class, 'id_mustahiq' , 'id');
+        return $this->belongsTo(Mustahiq::class, 'nama_penerima' , 'id');
     }
 
     public function jenisZakat()

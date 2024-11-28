@@ -18,4 +18,7 @@ class Muzakki extends Model
     public function transaksiPenerimaan(){
         return $this->hasMany(TransaksiPenerimaan::class , 'id_muzaki', 'id');
     }
+    public function laporanPenerimaan(){
+        return $this->hasMany(LaporanPenerimaan::class , 'muzakki', 'id');
+}
 }

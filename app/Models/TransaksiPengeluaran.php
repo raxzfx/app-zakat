@@ -16,8 +16,12 @@ class TransaksiPengeluaran extends Model
         'jenis_zakat',
     ];
 
-    public function jenisPenyaluran()
+    public function jenisPengeluaran()
 {
-    return $this->belongsTo(JenisPenyaluran::class, 'jenis_zakat', 'kode_jenis');
+    return $this->belongsTo(JenisPengeluaran::class, 'jenis_zakat', 'kode_jenis');
 }
+
+    public function laporanPengeluaran(){
+        return $this->hasMany(LaporanPengeluaran::class, 'transaksi_pengeluaran', 'id');
+    }
 }

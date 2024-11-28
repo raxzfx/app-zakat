@@ -20,9 +20,10 @@ class UpdateTransaksiPenerimaanRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_muzakki' => 'required|integer|exists:muzakkis,id',
+            'id_muzaki' => 'required|integer|exists:muzakki,id',
+            'tgl_penerimaan' => 'required|date',
             'tgl_transaksi' => 'required|date',
-            'jenis_zakat' => 'required|string|max:255|exists:jenis_zakat,kode_jenis',
+            'jenis_zakat' => 'required|string|max:255|exists:jenis_penerimaan,kode_jenis',
             'jumlah' => 'required|integer|min:1',
             'bukti' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Tambahkan validasi untuk `bukti`
         ];

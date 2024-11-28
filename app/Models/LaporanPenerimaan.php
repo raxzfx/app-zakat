@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaporanPenerimaan extends Model
 {
-    protected $table = 'transaksi_penerimaan'; //diambil dari tabel transaksi_penerimaan
+    protected $table = 'laporan_penerimaan'; 
     
-    protected $fillable = [
-        'tanggal_transaksi',
-        'jenis_zakat',
-        'alamat_penerima',
-        'jumlah',
-        'total'
-    ];
+     public function muzakki()
+    {
+        return $this->belongsTo(Muzakki::class);
+    }
+
+    public function jenisZakat()
+    {
+        return $this->belongsTo(JenisPenerimaan::class);
+    }
+
+    public function transaksiPenerimaan()
+    {
+        return $this->belongsTo(TransaksiPenerimaan::class);
+    }
 }

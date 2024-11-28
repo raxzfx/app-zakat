@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Muzakki;
+use Illuminate\Http\Request;
+use App\Exports\MuzakkiExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreMuzakkiRequest;
 use App\Http\Requests\UpdateMuzakkiRequest;
-use Illuminate\Http\Request;
 
 class MuzakkiController extends Controller
 {
@@ -17,8 +19,14 @@ class MuzakkiController extends Controller
         
 
           // Menggunakan Eloquent dengan pagination
+          $query = $request->input('query');
           $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
-        $muzakki = Muzakki::paginate($perPage);
+          if($query){
+            $muzakki = Muzakki::where('nama_lengkap', 'like', '%' . $query . '%')->paginate($perPage);
+          }else{
+            $muzakki = Muzakki::paginate($perPage);
+          }
+    
         return view('DataMaster.muzakki.index', compact('muzakki'));
     }
 
@@ -88,5 +96,10 @@ class MuzakkiController extends Controller
     {
         $muzakki->delete();
         return redirect()->route('muzakki.index')->with('success', 'Muzakki deleted successfully.');
+    }
+
+    public function export()
+    {
+        return Excel::download(new MuzakkiExport, 'muzakki.xlsx');
     }
 }

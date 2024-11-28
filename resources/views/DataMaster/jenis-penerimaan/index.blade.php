@@ -3,17 +3,13 @@
         <h1 class="uppercase text-xl">master data jenis penerimaan</h1>
 
         <div class="flex items-center justify-between mt-4 ">
-            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
-                <span class="mr-2">export data</span>
-                <ion-icon name="download-outline"></ion-icon>
-            </button>
 
             <div class="flex items-center">
-                <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
+                <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3 transition-all duration-150 ease-in-out hover:bg-sky-700">
                     <span class="mr-2">filter data</span>
                     <ion-icon name="filter-outline"></ion-icon>
                 </button>
-                <a href="{{ route('jenis-penerimaan.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
+                <a href="{{ route('jenis-penerimaan.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm transition-all duration-150 ease-in-out hover:bg-sky-700">
                     <span class="mr-2">add data</span>
                     <ion-icon name="add-circle-outline"></ion-icon>
                 </a>
@@ -33,15 +29,24 @@
             </div>
 
 
-            <label for="table-search" class="sr-only">Search</label>
-            <div class="relative mt-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <ion-icon name="search-outline"></ion-icon>
-                </div>
-                <input type="text" id="table-search"
-                    class="block w-64 pl-10 p-2 border border-gray-200 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search for items">
-            </div>
+            <form action="{{ route('jenis-penerimaan.index') }}" method="GET" class="relative mt-1 flex items-center">
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <input 
+        type="text" 
+        id="table-search" 
+        name="query" 
+        class="block w-64 pl-10 p-2 border border-gray-200 rounded-l-md text-sm focus:ring-blue-500 focus:border-blue-500" 
+        placeholder="Search anyone" 
+        value="{{ request('query') }}"> <!-- Tetap menampilkan input query -->
+    <button 
+        type="submit" 
+        class="bg-blue-500 text-white py-2 px-3 rounded-r-md text-sm transition-all duration-150 ease-in-out hover:bg-blue-600">
+        Submit
+    </button>
+</form>
         </div>
 
 
@@ -74,7 +79,7 @@
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 <!-- button edit -->
                                 <a href="{{ route('jenis-penerimaan.edit', $jenis_penerimaan->kode_jenis) }}"
-                                    class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 ">
+                                    class="bg-green-500 text-white py-1 px-3 rounded-md mb-1 transition-all duration-150 ease-in-out hover:bg-green-700 ">
                                     <ion-icon name="create-outline"></ion-icon>
                                 </a>
                                 <!-- a delete -->
@@ -82,7 +87,7 @@
                                     onsubmit="return confirm('Are you sure you want to delete this user?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 ">
+                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded-md mb-1 transition-all duration-150 ease-in-out hover:bg-red-700 ">
                                         <ion-icon name="trash-outline"></ion-icon>
                                     </button>
                                 </form>

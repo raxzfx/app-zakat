@@ -4,7 +4,7 @@
         <div class="bg-base-100 w-full rounded-lg shadow capitalize">
             <!-- <h5 class="bg-base-300 rounded-t-lg p-4 text-base font-bold">JS Validation</h5> -->
             <div class="w-full p-4">
-                <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('kategori.store') }}"
+                <form class="needs-validation peer grid gap-y-4" novalidate action="{{ route('informasi-kategori.store') }}"
                     method="POST">
                     @csrf
                     <!-- Account Details -->
@@ -26,9 +26,9 @@
                             <div class="label">
                                 <span class="label-text">kategori</span>
                             </div>
-                            <input type="text" placeholder="masukan judul" class="input" required
+                            <input type="text" placeholder="input kategori" class="input" required
                                 name="nama_kategori" />
-                            <span class="error-message">masukan nama lengkap anda</span>
+                            <span class="error-message">masukan kategori dengan benar</span>
                             <span class="success-message">Looks good!</span>
                         </label>
                     </div>

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Muzakki;
+use Illuminate\Http\Request;
+use App\Models\JenisPenerimaan;
 use App\Models\TransaksiPenerimaan;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTransaksiPenerimaanRequest;
 use App\Http\Requests\UpdateTransaksiPenerimaanRequest;
@@ -12,10 +16,17 @@ class TransaksiPenerimaanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trans = TransaksiPenerimaan::with('muzakki', 'jenisPenerimaan')->get();
-        return view('transaksi-penerimaan.index', compact('trans'));
+        $per_page = (int) $request->get('per_page', 10);
+        $per_page = $per_page > 0 ? $per_page : 10;
+
+        $transaksi = TransaksiPenerimaan::with('muzakki', 'jenisZakat')
+            ->selectRaw("*, DATE_FORMAT(tgl_penerimaan, '%Y-%m-%d') as tgl_penerimaan_formatted, DATE_FORMAT(tgl_transaksi, '%Y-%m-%d') as tgl_transaksi_formatted")
+            ->paginate($per_page);
+
+        return view('transaksi.penerimaan.index', compact('transaksi'));
+
     }
 
     /**
@@ -23,68 +34,55 @@ class TransaksiPenerimaanController extends Controller
      */
     public function create()
     {
-        return view('transaksi-penerimaan.create');
+        $jenis_zakat = JenisPenerimaan::all(); // Ambil data dari tabel jenis penerimaan
+        $muzakki = Muzakki::all(); // Ambil data dari tabel muzakki
+        return view('transaksi.penerimaan.create', compact('muzakki', 'jenis_zakat'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTransaksiPenerimaanRequest $request)
-    {
-        // Inisialisasi path kosong untuk menyimpan path file
-        $filePath = null;
+{
+    Log::info('Request data:', $request->all());
 
-        // Cek apakah file `bukti` ada
-        if ($request->hasFile('bukti')) {
-            // Membuat nama file unik
-            $fileName = time() . '_' . $request->file('bukti')->getClientOriginalName();
+    // Cek apakah ada file yang diunggah
+    if ($request->hasFile('bukti')) {
+        // Simpan file ke storage di folder public/images
+        $path = $request->file('bukti')->store('public/img');
 
-            // Menyimpan file ke folder 'public/images' dan mengambil path-nya
-            $filePath = $request->file('bukti')->storeAs('public/images', $fileName);
+        // Cek apakah file berhasil disimpan
+        if ($path) {
+            Log::info('File berhasil disimpan di: ' . $path);
+        } else {
+            Log::error('File gagal disimpan');
         }
-
-        // Simpan data ke dalam database
-        TransaksiPenerimaan::create([
-            'id_muzakki' => $request->id_muzakki,
-            'jenis_zakat' => $request->jenis_zakat,
-            'tgl_transaksi' => $request->tgl_transaksi,
-            'jumlah' => $request->jumlah,
-            'bukti' => $filePath ? Storage::url($filePath) : null, // Simpan URL file jika ada
-        ]);
-
-        // Redirect ke halaman sukses dengan pesan
-        return redirect()->back()->with('success', 'Data dan file berhasil di-upload!');
-
-        //jika menggunkan json bisa test pake ini 
-        // if($request->hasFile('bukti')) {
-        //     //membuat file unik
-        //     $filename = time() . '_' . $request->file('bukti')->getClientOriginalName();
-
-        //     // Menyimpan file ke dalam storage dengan folder 'public/images'
-        //     $path = $request->file('bukti')->storeAs('public/images', $filename);
-
-        //      // Atau jika menggunakan Storage::disk untuk kontrol lebih
-        //     // $path = Storage::disk('public')->putFileAs('images', $request->file('image'), $fileName);
-
-        //      // Mengembalikan respon dengan URL gambar
-        //      return response()->json([
-        //         'message' => 'File uploaded successfully!',
-        //         'file_path' => Storage::url($path),
-        //     ]);
-        // }
-
-        // return response()->json([
-        //     'message' => 'File upload failed!',
-        // ] , 400);
-
+    } else {
+        $path = null; // Jika tidak ada file, set $path ke null
     }
+
+    // Simpan data transaksi penerimaan ke database
+    TransaksiPenerimaan::create([
+        'id_muzaki' => $request->id_muzaki,
+        'tgl_penerimaan' => $request->tgl_penerimaan,
+        'jenis_zakat' => $request->jenis_zakat,
+        'tgl_transaksi' => $request->tgl_transaksi,
+        'jumlah' => $request->jumlah,
+        'bukti' => $path ? Storage::url($path) : null, // Menyimpan URL file di database
+    ]);
+
+    Log::info('Data berhasil disimpan.');
+
+    return redirect()->route('transaksi-penerimaan.index')->with('success', 'Data dan file berhasil di-upload!');
+}
+
 
     /**
      * Display the specified resource.
      */
     public function show(TransaksiPenerimaan $transaksiPenerimaan)
     {
-        return view('transaksi-penerimaan.show', compact('transaksiPenerimaan'));
+        return view('transaksi.penerimaan.show', compact('transaksiPenerimaan'));
     }
 
     /**
@@ -92,8 +90,10 @@ class TransaksiPenerimaanController extends Controller
      */
     public function edit(TransaksiPenerimaan $transaksiPenerimaan)
     {
-        $trans = TransaksiPenerimaan::findOrFail($transaksiPenerimaan->id);
-        return view('transaksi-penerimaan.edit', compact('trans'));
+        $transaksiPenerimaan->load('jenisZakat', 'muzakki'); // Load relasi
+        $jenis_zakat = JenisPenerimaan::all();
+        $muzakki = Muzakki::all();
+        return view('transaksi.penerimaan.update', compact('transaksiPenerimaan', 'jenis_zakat', 'muzakki'));
     }
 
     /**
@@ -103,7 +103,7 @@ class TransaksiPenerimaanController extends Controller
     {
 
         // Menyimpan data yang sudah divalidasi
-        $data = $request->only(['id_muzakki', 'tgl_transaksi', 'jenis_zakat', 'jumlah']);
+        $data = $request->only(['id_muzaki', 'tgl_transaksi', 'jenis_zakat', 'jumlah' , 'bukti' , 'tgl_penerimaan' ]);
 
         // Cek apakah ada file `bukti` yang diunggah
         if ($request->hasFile('bukti')) {

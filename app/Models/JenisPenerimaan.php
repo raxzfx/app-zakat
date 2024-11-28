@@ -12,6 +12,8 @@ class JenisPenerimaan extends Model
     // Nama primary key (jika bukan 'id')
     protected $primaryKey = 'kode_jenis';
 
+    public $timestamps = true;
+
     // Jika primary key bukan auto-increment
     // public $incrementing = false;
 
@@ -27,5 +29,10 @@ class JenisPenerimaan extends Model
     public function transaksiPenerimaan()
     {
         return $this->hasMany(TransaksiPenerimaan::class, 'jenis_zakat', 'kode_jenis');
+    }
+
+    public function laporanPenerimaan()
+    {
+        return $this->hasMany(LaporanPenerimaan::class, 'jenis_zakat', 'kode_jenis');
     }
 }

@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class LaporanPengeluaran extends Model
 {
-    protected $table = 'transaksi_pengeluaran'; //diambil dari tabel transaksi_pengeluaran
-    
+    protected $table = 'laporan_pengeluaran';
+
     protected $fillable = [
-        'tanggal_pengeluaran',
         'jenis_zakat',
-        'id_muzakki',
-        'jumlah',
-        'total'
+        'jumlah_pengeluaran',
+        'transaksi_pengeluaran'
     ];
+
+    public function jenisZakat(){
+        return $this->belongsTo(JenisPengeluaran::class, 'jenis_pengeluaran' , 'kode_jenis');  
+    }
+    public function transaksiPengeluaran(){
+        return $this->belongsTo(TransaksiPengeluaran::class, 'transaksi_pengeluaran' , 'id');  
+    }
 }

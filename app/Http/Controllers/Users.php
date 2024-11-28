@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Exports\UserExport;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class Users extends Controller
@@ -18,16 +20,21 @@ class Users extends Controller
      */
     public function index(Request $request)
     {
-
-        
-            // Menggunakan Eloquent dengan pagination
-            $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
-            $users = User::paginate($perPage); // 15 adalah jumlah item per halaman
-        
-            return view('DataMaster.users.index', compact('users'));
-        
+        $query = $request->input('query'); // Ambil input pencarian
+        $perPage = $request->get('per_page', 10); // Default 10 item per halaman
+    
+        // Jika ada parameter pencarian, gunakan kondisi where
+        if ($query) {
+            $users = User::where('name', 'like', '%' . $query . '%')
+                         ->paginate($perPage);
+        } else {
+            // Jika tidak ada pencarian, tampilkan semua data
+            $users = User::paginate($perPage);
+        }
+    
+        return view('DataMaster.users.index', compact('users'));
     }
-
+    
 
 
     /**
@@ -44,14 +51,7 @@ class Users extends Controller
     public function store(Request $request)
 
 {
-    if ($request->password != $request->password_confirmation) {
-        return redirect()->back()->with('error', 'Password tidak sesuai');
-    }
-
-    if ($request->password <= 8) {
-        return redirect()->back()->with('error', 'Password minimal 8 karakter');
-    }
-
+    
     if (User::where('username', $request->username)->exists()) {
         return redirect()->back()->with('error', 'Username sudah ada, gunakan yang lain');
     }
@@ -62,7 +62,7 @@ class Users extends Controller
         'nik' => 'required|numeric|unique:users,nik',
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users,username',
-        'password' => 'required|min:8|confirmed',
+        'password' => 'min:8|confirmed',
         ]);
     
 
@@ -137,6 +137,12 @@ class Users extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function export(){
+
+        return Excel::download(new UserExport, 'users.xlsx');
+
     }
 }
 
