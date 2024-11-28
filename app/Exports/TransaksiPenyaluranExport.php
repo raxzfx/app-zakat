@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Carbon\Carbon;
 
-class PenyaluranExport implements FromCollection, WithHeadings, WithStyles, WithTitle
+class TransaksiPenyaluranExport implements FromCollection, WithHeadings, WithStyles, WithTitle
 {
     public function collection()
     {

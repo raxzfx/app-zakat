@@ -3,10 +3,7 @@
     <h1 class="uppercase text-xl">master data jenis pengeluaran</h1>
 
 <div class="flex items-center justify-between mt-4 ">
-<button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm transition-all duration-150 ease-in-out hover:bg-green-700">
-                        <span class="mr-2">export data</span>
-                        <ion-icon name="download-outline"></ion-icon>
-                    </button>
+
 
 <div class="flex items-center">
 <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3 transition-all duration-150 ease-in-out hover:bg-sky-700">

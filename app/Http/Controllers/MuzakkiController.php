@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Muzakki;
+use Illuminate\Http\Request;
+use App\Exports\MuzakkiExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreMuzakkiRequest;
 use App\Http\Requests\UpdateMuzakkiRequest;
-use Illuminate\Http\Request;
 
 class MuzakkiController extends Controller
 {
@@ -94,5 +96,10 @@ class MuzakkiController extends Controller
     {
         $muzakki->delete();
         return redirect()->route('muzakki.index')->with('success', 'Muzakki deleted successfully.');
+    }
+
+    public function export()
+    {
+        return Excel::download(new MuzakkiExport, 'muzakki.xlsx');
     }
 }

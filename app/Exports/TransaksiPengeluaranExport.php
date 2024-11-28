@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class DataExport implements FromCollection, WithHeadings, WithStyles, WithEvents
+class TransaksiPengeluaranExport implements FromCollection, WithHeadings, WithStyles, WithEvents
 {
     public function collection()
     {

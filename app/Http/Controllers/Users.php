@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Exports\UserExport;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class Users extends Controller
@@ -135,6 +137,12 @@ class Users extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function export(){
+
+        return Excel::download(new UserExport, 'users.xlsx');
+
     }
 }
 

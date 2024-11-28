@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JenisPenyaluran;
+use App\Models\JenisPengeluaran;
 use App\Models\TransaksiPengeluaran;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TransaksiPengeluaranExport;
 use App\Http\Requests\StoreTransaksiPengeluaranRequest;
 use App\Http\Requests\UpdateTransaksiPengeluaranRequest;
-use App\Models\JenisPengeluaran;
 
 class TransaksiPengeluaranController extends Controller
 {
@@ -99,5 +101,9 @@ class TransaksiPengeluaranController extends Controller
     {
         $transaksiPengeluaran->delete();
         return redirect()->route('transaksi-pengeluaran.index')->with('success', 'Transaksi Pengeluaran deleted successfully.');
+    }
+
+    public function export(){
+        return Excel::download(new TransaksiPengeluaranExport, 'Transaksi Pengeluaran.xlsx');
     }
 }
