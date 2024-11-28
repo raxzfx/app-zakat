@@ -3,10 +3,12 @@
         <h1 class="uppercase text-xl">data Transaksi Pengeluaran</h1>
 
         <div class="flex items-center justify-between mt-4 ">
-            <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
-                <span class="mr-2">export data</span>
-                <ion-icon name="download-outline"></ion-icon>
-            </button>
+            <form method="GET" action="{{ route('transpengeluaran.export') }}" class="flex items-center">
+                <button type="submit" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
+                    <span class="mr-2">Export Data</span>
+                    <ion-icon name="download-outline"></ion-icon>
+                </button>
+            </form>
 
             <div class="flex items-center">
                 <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">

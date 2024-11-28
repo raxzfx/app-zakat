@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mustahiq;
 use Illuminate\Http\Request;
+use App\Exports\MustahiqExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreMustahiqRequest;
 use App\Http\Requests\UpdateMustahiqRequest;
 
@@ -89,5 +91,10 @@ class MustahiqController extends Controller
     {
         $mustahiq->delete();
         return redirect()->route('mustahiq.index')->with('success', 'Mustahiq deleted successfully.');
+    }
+
+
+    public function export(){
+        return Excel::download(new MustahiqExport, 'mustahiq.xlsx');
     }
 }

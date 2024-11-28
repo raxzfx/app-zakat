@@ -86,27 +86,6 @@
 
         <li class="mb-1 group">
         <button type="button" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
-            <ion-icon name="information-circle-outline" class="mr-2"></ion-icon>  
-            <span>informasi</span>
-            <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>
-        </button>
-         <!-- sub menu -->
-        <ul class="capitalize pl-8 mt-2 text-black hidden group-[.selected]:block">
-            <li class="mb-3 ">
-                <a href="{{ route('informasi-kategori.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
-                    kategori
-                </a>
-            </li>
-            <li class="mb-3 ">
-                <a href="{{ route('informasi-informasi.index') }}" class=" text-sm flex items-center hover:text-white before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-black before:mr-2">
-                    informasi
-                </a>
-            </li>
-            </ul>
-        </li>
-
-        <li class="mb-1 group">
-        <button type="button" class="flex items-center py-2 px-4 transition-all duration-150 ease-in-out hover:bg-toska rounded-md hover:text-white group-[.selected]:bg-toska group-[.selected]:text-gray-100 dropdown-toggle w-full">
             <ion-icon name="document-outline" class="mr-2"></ion-icon> 
             <span>laporan</span>  
             <ion-icon name="chevron-forward-outline" class="ml-auto group-[.selected]:rotate-90"></ion-icon>

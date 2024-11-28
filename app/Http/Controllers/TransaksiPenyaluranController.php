@@ -6,6 +6,8 @@ use App\Models\Mustahiq;
 use Illuminate\Http\Request;
 use App\Models\JenisPenyaluran;
 use App\Models\TransaksiPenyaluran;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TransaksiPenyaluranExport;
 use App\Http\Requests\StoreTransaksiPenyaluranRequest;
 use App\Http\Requests\UpdateTransaksiPenyaluranRequest;
 
@@ -93,5 +95,9 @@ class TransaksiPenyaluranController extends Controller
     {
         $transaksiPenyaluran->delete();
         return redirect()->route('transaksi-penyaluran.index')->with('success', 'Transaksi Penyaluran deleted successfully.');
+    }
+
+    public function export(){
+        return Excel::download(new TransaksiPenyaluranExport,  'Transaksi Penyaluran.xlsx');
     }
 }
