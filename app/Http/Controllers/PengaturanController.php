@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengaturan;
 use App\Http\Requests\StorePengaturanRequest;
 use App\Http\Requests\UpdatePengaturanRequest;
+use Illuminate\Http\Request;
 
 class PengaturanController extends Controller
 {
@@ -13,54 +14,12 @@ class PengaturanController extends Controller
      */
     public function index()
     {
-        //
+        return view('pengaturan.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePengaturanRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pengaturan $pengaturan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengaturan $pengaturan)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePengaturanRequest $request, Pengaturan $pengaturan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pengaturan $pengaturan)
-    {
-        //
-    }
 }

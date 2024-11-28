@@ -12,8 +12,15 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $querry = $request->input('query');
         $perPage = $request->get('per_page', 10); // Default ke 15 jika tidak ada parameter
-        $categories = Category::paginate($perPage); // 15 adalah jumlah item per halaman
+
+        if($querry){
+            $categories = Category::where('nama_kategori', 'like', '%' . $querry . '%')->paginate($perPage);
+        }else{
+            $categories = Category::paginate($perPage);
+        }
+
         return view('informasi.kategori.index', compact('categories'));
     }
 

@@ -71,6 +71,12 @@ Route::prefix('transaksi')->group(function () {
 
 });
 
+Route::get('/Pengaturan/index', function () {
+    return view('Pengaturan.index');
+}
+
+);
+
 Route::prefix('laporan')->group(function () {
 
     Route::resource('/penerimaan', LaporanPenerimaan::class);

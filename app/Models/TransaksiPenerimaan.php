@@ -38,5 +38,9 @@ class TransaksiPenerimaan extends Model
     {
         return $this->belongsTo(Muzakki::class, 'id_muzaki', 'id');
     }
+    public function laporanPenerimaan()
+    {
+        return $this->hasMany(LaporanPenerimaan::class, 'transaksi_penerimaan', 'id');
+    }
 }
 
