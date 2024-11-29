@@ -38,13 +38,13 @@ class LaporanPengeluaranController extends Controller
     $transaksiPengeluaran = $query->paginate($per_page);
     
     // Total jumlah pengeluaran
-    $total_pengeluaran = $query->sum('jumlah');
+  
 
     // Data jenis zakat
     $jenisZakat = JenisPengeluaran::all();
 
     // Kirim data ke view
-    return view('laporan.pengeluaran.index', compact('transaksiPengeluaran', 'total_pengeluaran', 'jenisZakat'));
+    return view('laporan.pengeluaran.index', compact('transaksiPengeluaran',  'jenisZakat'));
 }
 
 

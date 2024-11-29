@@ -24,6 +24,7 @@ class StoreTransaksiPengeluaranRequest extends FormRequest
         return [
             'nama_pengeluaran' => 'required|string|max:255',
             'deskripsi' => 'string|nullable',
+            'jumlah' => 'required|integer',
             'tgl_transaksi' => 'required|date',
         ];
     }

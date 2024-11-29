@@ -45,47 +45,27 @@
                     <div class="w-full">
                         <label class="form-control">
                             <div class="label">
-                                <span class="label-text">Alamat penerima</span>
+                                <span class="label-text">jumlah Pengeluaran</span>
                             </div>
                             <input type="text" placeholder="masukan kode jenis " class="input" required
-                                name="alamat_penerima" value="{{ old('alamat_penerima', $transPengeluaran->alamat_penerima) }}" />
+                                name="jumlah" value="{{ old('jumlah', $transPengeluaran->jumlah) }}" />
+                            <span class="error-message">masukan nama lengkap anda</span>
+                            <span class="success-message">Looks good!</span>
+                        </label>
+                    </div>
+
+                    <div class="w-full">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">deskripsi</span>
+                            </div>
+                            <input type="text" placeholder="masukan kode jenis " class="input" required
+                                name="deskripsi" value="{{ old('deskripsi', $transPengeluaran->deskripsi) }}" />
                             <span class="error-message">masukan alamat_penerima lengkap </span>
                             <span class="success-message">Looks good!</span>
                         </label>
                     </div>
 
-                    <div class="w-full">
-                      <label class="form-control">
-                          <div class="label">
-                              <span class="label-text">Jenis Zakat</span>
-                          </div>
-                          <select name="jenis_zakat" id="jenis_zakat" class="input" required>
-                              <option disabled selected>Pilih jenis zakat</option>
-                              @foreach ($jenisPengeluaran as $jenis)
-                                  <option value="{{ $jenis->kode_jenis }}"
-                                      {{ $jenis->kode_jenis == $transPengeluaran->jenis_zakat ? 'selected' : '' }}>
-                                      {{ $jenis->jenis_pengeluaran }}
-                                  </option>
-                              @endforeach
-                          </select>
-                          <span class="error-message">Kode jenis</span>
-                          <span class="success-message">Looks good!</span>
-                      </label>
-                  </div>
-                  
-
-
-                    <div class="w-full">
-                        <label class="form-control">
-                            <div class="label">
-                                <span class="label-text">jumlah</span>
-                            </div>
-                            <input type="text" placeholder="jumlah" class="input" required name="jumlah"
-                                value="{{ old('jumlah', $transPengeluaran->jumlah) }}" />
-                            <span class="error-message">masukan jumlah anda dengan benar</span>
-                            <span class="success-message">Looks good!</span>
-                        </label>
-                    </div>
 
                     <div class="w-full">
                       <label class="form-control">

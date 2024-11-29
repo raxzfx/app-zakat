@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_pengeluaran');
             $table->string('deskripsi') ->nullable();
+            $table->bigInteger('jumlah');
             $table->date('tgl_transaksi');
             $table->timestamps();
         });

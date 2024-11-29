@@ -76,7 +76,10 @@
                             No</th>
                         <th
                             class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
-                            nama jenis</th>
+                            nama pengeluaran</th>
+                        <th
+                            class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
+                            jumlah pengeluaran</th>
                         <th
                             class="px-6 py-3 border-b-2 border-gray-300 bg-gray-100 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">
                             deskripsi</th>
@@ -101,6 +104,7 @@
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">
                                 {{ $transPengeluaran->firstItem() + $index }} </td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->nama_pengeluaran }}</td>
+                            <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->jumlah }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans-> deskripsi }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{ $trans->tgl_transaksi }}</td>
                             <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">

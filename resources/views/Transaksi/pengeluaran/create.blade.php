@@ -34,8 +34,19 @@
                             <div class="label">
                                 <span class="label-text">nama pengeluaran</span>
                             </div>
-                            <input type="text" placeholder="nama_pengeluaran" class="input" required name="nama_pengeluaran" />
+                            <input type="text" placeholder="nama pengeluaran" class="input" required name="nama_pengeluaran" />
                             <span class="error-message">masukan nama_pengeluaran anda dengan benar</span>
+                            <span class="success-message">Looks good!</span>
+                        </label>
+                    </div>
+
+                    <div class="w-full">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text">jumlah pengeluaran</span>
+                            </div>
+                            <input type="number" placeholder="jumlah pengeluaran" class="input" required name="jumlah" />
+                            <span class="error-message">masukan jumlah pengeluaran anda</span>
                             <span class="success-message">Looks good!</span>
                         </label>
                     </div>

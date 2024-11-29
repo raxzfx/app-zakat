@@ -20,8 +20,8 @@ class LaporanPenerimaanController extends Controller
         $perPage = $request->get('per_page', 10);
         $jenisZakat = JenisPenerimaan::all();
         $namaMuzakki = Muzakki::all();
-        $transaksi = TransaksiPenerimaan::all();
+        $transaksi = TransaksiPenerimaan::paginate();
         $total = $transaksi->sum('jumlah');
-        return view('laporan.penerimaan.index', compact('laporan', 'jenisZakat', 'namaMuzakki', 'transaksi'));
+        return view('laporan.penerimaan.index', compact( 'jenisZakat', 'namaMuzakki', 'transaksi'));
     }
 }

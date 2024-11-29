@@ -62,7 +62,7 @@ class Users extends Controller
         'nik' => 'required|numeric|unique:users,nik',
         'name' => 'required|string|max:255',
         'username' => 'required|string|max:255|unique:users,username',
-        'password' => 'min:8|confirmed',
+        'password' => 'min:8',
         ]);
     
 
@@ -70,7 +70,7 @@ class Users extends Controller
         'nik' => $request->nik,
         'name' => $request->name,
         'username' => $request->username,
-        'password' => Hash::make($request->password),
+        'password' => Hash::make('12345678') ,
     ]);
     
     return redirect()->route('users.index')->with('success', 'User created successfully.');

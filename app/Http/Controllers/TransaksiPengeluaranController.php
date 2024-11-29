@@ -49,6 +49,7 @@ class TransaksiPengeluaranController extends Controller
         
         TransaksiPengeluaran::create([
             'nama_pengeluaran' => $request->nama_pengeluaran,
+            'jumlah' => $request->jumlah,
             'deskripsi' => $request->deskripsi,
             'tgl_transaksi' => $request->tgl_transaksi
         ]);
@@ -85,9 +86,8 @@ class TransaksiPengeluaranController extends Controller
     {
         $transaksiPengeluaran->update([
             'nama_pengeluaran' => $request->nama_pengeluaran,
-            'alamat_penerima' => $request->alamat_penerima,
+            'deskripsi' => $request->deskripsi,
             'jumlah' => $request->jumlah,
-            'jenis_zakat' => $request->jenis_zakat,
             'tgl_transaksi' => $request->tgl_transaksi
         ]);
 

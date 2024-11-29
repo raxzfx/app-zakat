@@ -10,6 +10,7 @@ class TransaksiPengeluaran extends Model
 
     protected $fillable = [
         'nama_pengeluaran',
+        'jumlah',
         'deskripsi',
         'tgl_transaksi',
 

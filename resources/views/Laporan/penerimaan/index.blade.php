@@ -2,24 +2,6 @@
  <div class="p-4">
         <h1 class="uppercase text-xl">laporan penerimaan</h1>
 
-        <div class="flex items-center justify-between mt-4 ">
-        <button type="button" class="bg-green-500 text-white py-1 px-3 rounded-md text-sm">
-                                <span class="mr-2">export data</span>
-                                <ion-icon name="download-outline"></ion-icon>
-                            </button>
-
-        <div class="flex items-center">
-        <button type="button" class="bg-biru text-white py-1 px-3 rounded-md text-sm mr-3">
-                                <span class="mr-2">filter data</span>
-                                <ion-icon name="filter-outline"></ion-icon>
-                            </button>
-        <a href="{{ route('kategori.create') }}" class="bg-biru text-white py-1 px-3 rounded-md text-sm">
-                                <span class="mr-2">add data</span>
-                                <ion-icon name="add-circle-outline"></ion-icon>
-                            </a>
-        </div>
-        </div>
-
         <div class="flex items-center justify-between mt-4 text-sm">
 
         <div class="flex items-center">
@@ -57,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $index =>$kate)
+                    @foreach ($transaksi as $index =>$kate)
                     <tr>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">  {{ $categories->firstItem() + $index }} </td>
                         <td class="px-6 py-4 border-b border-gray-200 bg-white text-sm">{{$kate->nama_kategori}}</td>
@@ -70,7 +52,7 @@
                 </tbody>
             </table>
         </div>
-        {{ $categories->links() }}
+        {{ $transaksi->links() }}
         <!-- end table -->
     </div>   
 </x-layout>
