@@ -19,7 +19,17 @@ class PengaturanController extends Controller
 
     public function store(Request $request)
     {
-        
+        Pengaturan::create([
+            'nama_mesjid',
+            'alamat',
+            'koordinat',
+            'no_telp',
+            'nama_pimpinan',
+            'no_hp',
+            'email',
+        ]);
+
+        return redirect()->route('pengaturan.index')->with('success', 'Created successfully.');
     }
 
 }

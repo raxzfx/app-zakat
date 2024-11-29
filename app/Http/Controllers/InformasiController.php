@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use illuminate\Http\Request;
 use App\Models\Informasi;
 use App\Http\Requests\StoreInformasiRequest;
 use App\Http\Requests\UpdateInformasiRequest;
